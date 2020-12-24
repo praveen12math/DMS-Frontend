@@ -1,0 +1,21 @@
+.myBg {
+  background-image: url("../header-background.jpg");
+}
+.header {
+  background-color: #fff;
+}
+.header .header-content {
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+  text-align: center;
+}
+.header .text-container {
+  margin-bottom: 4rem;
+}
+
+.p-large {
+  font: 400 1rem/1.5rem "Raleway", sans-serif;
+}
+.basic-2 .image-container {
+  margin-bottom: 4rem;
+}
