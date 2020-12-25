@@ -1,21 +1,26 @@
+.row {
+  margin: 0;
+  padding: 0;
+}
+.col-lg-6 {
+  padding-left: 0;
+}
 .myBg {
   background-image: url("../header-background.jpg");
+  height: 100vh;
 }
-.header {
-  background-color: #fff;
+.image1 {
+  margin-top: 60px;
+  width: 85%;
 }
-.header .header-content {
-  padding-top: 5rem;
-  padding-bottom: 4rem;
+.heading1 {
   text-align: center;
+  color: darkcyan;
+  font-weight: 900;
+  font-size: 2rem;
 }
-.header .text-container {
-  margin-bottom: 4rem;
-}
-
-.p-large {
-  font: 400 1rem/1.5rem "Raleway", sans-serif;
-}
-.basic-2 .image-container {
-  margin-bottom: 4rem;
+.text1 {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
 }
