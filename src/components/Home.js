@@ -101,13 +101,6 @@ export default function Home() {
         <div className="row">
         <div className="div col-lg-10 offset-1">
         <form>
-        <div className="form-group">
-        <label className="mt-4">Name</label>
-        <input 
-        type="text" 
-        className="form-control" 
-        placeholder="Ex: Random Gupta"/>
-        </div>
 
         <div className="form-group">
         <label>Email</label>
@@ -123,15 +116,6 @@ export default function Home() {
         type="text" 
         className="form-control" 
         placeholder="Ex: 175550"/>
-        </div>
-
-        <div class="form-group">
-        <label for="exampleFormControlSelect1">Role</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-        <option>Student</option>
-        <option>HOD</option>
-        <option>Teacher</option>
-        </select>
         </div>
 
 
