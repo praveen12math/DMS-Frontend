@@ -1,0 +1,19 @@
+.student {
+  background-color: #1b1464;
+  height: 100vh;
+}
+.text2 {
+  text-align: center;
+  color: white;
+  font-weight: 900;
+  margin-bottom: 60px;
+  padding: 20px;
+}
+.block:hover {
+  background-color: #f7a51c;
+  width: "100%";
+}
+
+.block {
+  text-align: center;
+}
