@@ -4,6 +4,8 @@ import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Student from './components/Student';
 import Teacher from './components/Teacher';
 import Hod from './components/Hod';
+import Attendance from './components/Attendance'
+import Notice from './components/Notice'
 
 export default function App() {
   return (
@@ -16,7 +18,8 @@ export default function App() {
     <Route exact path="/student" component={Student}/>
     <Route exact path="/teacher" component={Teacher}/>
     <Route exact path="/hod" component={Hod}/>
-
+    <Route exact path='/attendance' component={Attendance}/>
+    <Route exact path='/notice' component={Notice} />
 
     </Switch>  
     </Router>

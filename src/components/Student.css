@@ -9,11 +9,22 @@
   margin-bottom: 60px;
   padding: 20px;
 }
-.block:hover {
+/* .block:hover {
   background-color: #f7a51c;
-  width: "100%";
+  border-radius: 1rem;
+  
+} */
+
+/* .img:hover{
+  width: 10%;
+} */
+
+.myblock {
+  text-align: center;
 }
 
-.block {
-  text-align: center;
+.myblock:hover{
+    filter: brightness(00) invert(0);
+    -webkit-filter: brightness(00) invert(1);
+    cursor: pointer;
 }
