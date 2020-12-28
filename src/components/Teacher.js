@@ -1,166 +1,114 @@
-import React from 'react'
-import Clock from 'react-live-clock'
-//import Moment from 'react-moment'
-import "./Teacher.css"
+import React, {useEffect} from 'react'
+import {useHistory} from "react-router-dom"
+import './Teacher.css'
+import './Notice'
 
-export default function Teacher() {
+import Aos from "aos"
+import "aos/dist/aos.css"
+
+
+export default function Student() {
+
+    const history = useHistory()
+
+    useEffect (() => {
+        Aos.init({duration: 2000})
+    })
+
     return (
-        <div>
-        <div className='row'>
-        <div className='col-10'>
-          <h1 style={{textAlign:"center"}} >Good Morning [User]</h1>
-            </div>
-            <div className="col-2 ml-auto">
-            <h4>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Clock 
-            format={'HH:mm:ss'} 
-            ticking={true}
-            />  </h4>
-          
-          &nbsp;<Clock 
-            format={'dddd M MMM YYYY'} 
-            ticking={true}
-            />  
-            </div>
-            </div>
+        <div className="student">
+        <p 
+        data-aos="fade-down" data-aos-duration="4000"
+        className="text2">What are you looking for ?</p>
+
+<div className="row">
+        <div 
+        onClick={()=> history.push("/attendance")}
+        data-aos="flip-up"
+        className="col-lg-2 col-sm-6 offset-1 block myblock">
+         <img className="image2" src="1.png" alt="muY"/>
+         <p className="text-white text-center">Attendence</p>
+        </div>  
+        
+        <div 
+        data-aos="flip-down"
+        data-aos-delay="500"
+        className="col-lg-2 col-sm-6 block myblock">
+         <img className="image3" src="2.png" alt="muY"/>
+         <p className="text-white text-center">Request Leave</p>
+        </div>
+
+        <div 
+        data-aos="flip-up"
+        data-aos-delay="800"
+        className="col-lg-2 col-sm-6 block myblock">
+         <img src="3.png" alt="muY"/>
+         <p className="text-white text-center">Books</p>
+        </div>
+
+        <div
+        data-aos="flip-down"
+        data-aos-delay="1100"
+         className="col-lg-2 col-sm-6 block myblock">
+         <img src="4.png" alt="muY"/>
+         <p className="text-white text-center">Old Papers</p>
+        </div>
+
+        <div 
+        onClick={ ()=> history.push('/notice')}
+        data-aos="flip-up"
+        data-aos-delay="1400"
+        className="col-lg-2 col-sm-6 block myblock">
+         <img src="10.3.png" alt="muY" />
+         <p className="text-white text-center mt-4">Notice</p>
+        </div>
+   
+      </div> <br/><br/> <br/><br/>
 
 
-{/* Notices Card */}
+        <div className="row">     
+        <div 
+        data-aos="flip-up"
+        data-aos-delay="1700"
+        className="col-lg-2 col-sm-6 block offset-1 myblock">
+         <img 
+         src="6.png" alt="muY"/>
+         <p className="text-white text-center mt-4">Assignment</p>
+        </div>
 
-<br/><br/>
-<div className='row'>
-<div className='col-lg-3'>
-<div class="card border-primary mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
+        <div 
+        data-aos="flip-down"
+        data-aos-delay="2000"
+        className="col-lg-2 col-sm-6 block myblock">
+     <img src="7.png" alt="muY"/>
+         <p className="text-white text-center mt-4">Complain</p>
+        </div>
 
-<div className='col-lg-3'>
-<div class="card border-secondary mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body text-secondary">
-    <h5 class="card-title">Secondary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
+        <div 
+        data-aos="flip-up"
+        data-aos-delay="2300"
+        className="col-lg-2 col-sm-6 block myblock">
+     <img src="8.png" alt="muY"/>
+         <p className="text-white text-center mt-4">Timetable</p>
+        </div>
 
-<div className='col-lg-3'>
-<div class="card border-success mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body text-success">
-    <h5 class="card-title">Success card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
+        <div 
+        data-aos="flip-down"
+        data-aos-delay="2600"
+        className="col-lg-2 col-sm-6 block myblock">
+     <img src="11.png" alt="muY"/>
+         <p className="text-white text-center mt-4">Feedback</p>
+        </div>
 
-<div className='col-lg-3'>
-<div class="card border-danger mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body text-danger">
-    <h5 class="card-title">Danger card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
+        <div
+        data-aos="flip-up"
+        data-aos-delay="2900"
+         className="col-lg-2 col-sm-6 block myblock">
+     <i class="fas fa-users-cog" style={{fontSize:"700%", color:"#FF362E"}}></i>
+         <p className="text-white text-center">Logout</p>
+        </div>
 
-<div className='col-lg-3'>
-<div class="card border-warning mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Warning card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
-
-<div className='col-lg-3'>
-<div class="card border-info mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Info card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
-
-<div className='col-lg-3'>
-<div class="card border-light mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Light card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
-
-<div className='col-lg-3'>
-<div class="card border-dark mb-3" style={{maxWidth:"18rem"}}>
-  <div class="card-header">Header</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
-
-</div>
-
-{/* Actions Card */}
-<div className='row'>
-<div className='col-3'></div>
-<div className='col-2'>
-             <div className="card text-white bg-primary mb-3" style={{maxWidth:"18rem"}}>
-Attendance
-  <div className="card-body">
-    <img src="group.png" alt='' className='mx-auto d-block img1' style={{width:"50%"}} />
-  </div>
-</div>
-</div>
-
-<div className='col-2'>
-
-<div className="card text-white bg-primary mb-3" style={{maxWidth:"18rem"}}>
-
-<div className='row'>
-<div className='col-6'>
-Notice
-</div>
-<div className='col-2'>
-  <i className="fas fa-minus-circle" alt="Delete Notice"></i>
-  </div>
-  <div className='col-2'>
-  <i className="fas fa-pen"></i>
-  </div>
-  <div className='col-2'>
-  <i className="fas fa-plus"></i>
-  </div>
-  </div>
-  <div className="card-body">
-  <img src="noticeboard.png" alt='' className='mx-auto d-block img2' style={{width:"50%"}} />
-  </div>
-</div>
-</div>
-
-<div className='col-2'>
-<div className="card text-white bg-primary mb-3" style={{maxWidth:"18rem"}}>
-  <div className="card-header">Teacher</div>
-  <div className="card-body">
-    <h5 className="card-title">Card title</h5>
-    <p className="card-text">Some text Here lorem </p>
-  </div>
-</div>
-</div>
-<div className='col-3'></div>
-</div>
-
-{/* <img src="edit-form.png" alt=""/> */}
-
+        </div>
         </div>
     )
 
