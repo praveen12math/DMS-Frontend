@@ -93,7 +93,9 @@ export default function Home() {
         <div className="div col-lg-10 offset-1">
         <form>
 
-        <div className="form-group">
+        <div className="form-group"
+        data-aos="fade-right" data-aos-delay="1000"
+        >
         <label>Email</label>
         <input 
         type="email" 
@@ -101,13 +103,26 @@ export default function Home() {
         placeholder="Ex: randomgupta@email.com"/>
         </div>
 
+        <div data-aos="fade-left" data-aos-delay="1400" class="form-group">
+        <label for="exampleFormControlSelect1">Role</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+        <option>Student</option>
+        <option>HOD</option>
+        <option>Teacher</option>
+        </select>
+        </div>
 
-        <div class="form-group">
+
+        <div class="form-group"
+        data-aos="fade-right" data-aos-delay="1800"
+        >
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
         </div>
 
-        <div className="text-center mb-3">
+        <div className="text-center mb-3"
+        data-aos="zoom-out" data-aos-delay="2200"
+        >
         <button type="submit" class="btn btn-success btn-block">Signin</button>
         </div>  
 
