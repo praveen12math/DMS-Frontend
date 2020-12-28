@@ -1,0 +1,14 @@
+
+body{
+    background-color: #535C68;
+}
+
+.myblockAttendance{
+    text-align: center;
+}
+
+.myblockAttendance:hover{
+    filter: brightness(00) invert(0);
+    -webkit-filter: brightness(00) invert(1);
+    cursor: pointer;
+}

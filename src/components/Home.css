@@ -4,6 +4,7 @@
 }
 .col-lg-6 {
   padding-left: 0;
+  padding-right: 0;
 }
 .myBg {
   background-image: url("../header-background.jpg");
@@ -24,3 +25,15 @@
   margin-top: 10px;
   font-weight: 500;
 }
+.card{
+  vertical-align: auto;
+}
+@media only screen and (max-width:662px){
+  .backgroundSection2{
+    display: none;
+  }
+
+}
+
+
+
