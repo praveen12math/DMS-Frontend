@@ -1,39 +1,44 @@
-.row {
-  margin: 0;
-  padding: 0;
+body{
+    background-color: #1D2521;
+    font-family: 'Poppins', sans-serif;
 }
-.col-lg-6 {
-  padding-left: 0;
-  padding-right: 0;
+.header-text{
+    color: #069C54;
 }
-.myBg {
-  background-image: url("../header-background.jpg");
-  height: 100vh;
-}
-.image1 {
-  margin-top: 60px;
-  width: 85%;
-}
-.heading1 {
-  text-align: center;
-  color: darkcyan;
-  font-weight: 900;
-  font-size: 2rem;
-}
-.text1 {
-  text-align: center;
-  margin-top: 10px;
-  font-weight: 500;
-}
-.card{
-  vertical-align: auto;
-}
-@media only screen and (max-width:662px){
-  .backgroundSection2{
-    display: none;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
   }
-
-}
-
-
-
+  .center-img {
+    margin-top: 115px;
+  }
+  .btn-home{
+      background-color: #069C54;
+      margin-top: -175px;
+  }
+  @media (max-width: 576px) {
+    .header-text{
+        margin-top: -150px;
+        margin-right: 40px;
+        text-align: center;
+        font-size: 60px;
+        font-weight: 500;
+        margin-bottom: -20px;
+       
+    }
+    .btn-home{
+        margin-top: 80px;
+        display: block;
+        width: 100%;
+        margin-left: 50px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .center-img {
+        margin-top: -80px;
+        margin-left: 40px;
+        margin-bottom: 60px;
+      }
+  }

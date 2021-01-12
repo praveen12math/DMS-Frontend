@@ -1,16 +1,21 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Student.css'
+import {isAuthenticated} from "../auth/index"
 import Aos from "aos"
 import "aos/dist/aos.css"
 
 
 export default function Student() {
 
+    const {user} = isAuthenticated
+
     useEffect (() => {
         Aos.init({duration: 2000})
     })
 
     return (
+        <>
+        
         <div className="student">
         <p 
         data-aos="fade-down"
@@ -104,5 +109,7 @@ export default function Student() {
 
         </div>
         </div>
+
+        </>
     )
 }
