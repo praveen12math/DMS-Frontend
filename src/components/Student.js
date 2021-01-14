@@ -1,21 +1,29 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import './Student.css'
-import {isAuthenticated} from "../auth/index"
+import {isAuthenticated, signout} from "../auth/index"
 import Aos from "aos"
 import "aos/dist/aos.css"
+import { Redirect, useHistory } from 'react-router-dom'
 
 
 export default function Student() {
 
-    const {user} = isAuthenticated
+    const history = useHistory()
 
     useEffect (() => {
         Aos.init({duration: 2000})
     })
 
+    const userD = JSON.parse(localStorage.getItem("jwt"))
+
     return (
         <>
         
+        {isAuthenticated() ? userD.user.role === 1 ? <Redirect to="/teacher"/> : "" :
+        
+         <Redirect to="/account" /> }
+
+
         <div className="student">
         <p 
         data-aos="fade-down"
@@ -102,14 +110,13 @@ export default function Student() {
         <div
         data-aos="flip-up"
         data-aos-delay="2900"
-         className="col-lg-2 col-sm-6 block myblock">
+         className="col-lg-2 col-sm-6 block myblock" onClick={()=> signout(()=> history.push("/account"))} >
      <i class="fas fa-sign-out-alt logoutIcon" style={{fontSize:"700%", color:"#FF362E"}}></i>
          <p className="text-white text-center">Logout</p>
         </div>
 
         </div>
         </div>
-
         </>
     )
 }
