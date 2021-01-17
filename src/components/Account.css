@@ -1,0 +1,38 @@
+@media ( min-width: 576px){
+    .accountBody{
+        background-image: url("/src/newImage.svg");
+        background-repeat: no-repeat;
+        background-size: 60%;
+        height: 100vh;
+    }
+    .accountImage{
+        display: none;
+    }
+    .accountFooter{
+        margin-top: -90px;
+        margin-left: 570px;
+    }
+    .accountUserImage{
+        display: none;
+    }
+}
+
+@media ( max-width: 576px){
+    .accountImage{
+        width: 100%;
+        margin-top: -200px;
+    }
+    .accountFooter{
+        font-weight: 600;
+        margin-left: 200px;
+        margin-top: -70px;
+
+    }
+    .accountUserImage{
+        filter: brightness(00) invert(0);
+        -webkit-filter: brightness(00) invert(1);
+        width: 20%;
+        margin-bottom: -130px;
+        margin-left: 175px;
+    }
+}
