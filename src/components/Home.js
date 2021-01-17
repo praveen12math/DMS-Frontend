@@ -9,7 +9,7 @@ const Home = () => {
         <div className="row no-gutters">
             <div className="col-lg-6  offset-1">
             <div className="container">
-              <h1 className="header-text center display-3"> <b>Department Management System</b></h1>
+              <h1 className="header-text center2 display-3"> <b>Department Management System</b></h1>
               
             </div>
             </div>

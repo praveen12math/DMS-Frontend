@@ -23,6 +23,10 @@ export default function Student() {
         
          <Redirect to="/account" /> }
 
+         {isAuthenticated() ? userD.user.role === 2 ? <Redirect to="/hod"/> : "" :
+        
+        <Redirect to="/account" /> }
+
 
         <div className="student">
         <p 
