@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {signin, authenticate, isAuthenticated} from "../auth/index"
+import {signin, authenticate} from "../auth/index"
 import {Redirect} from "react-router-dom"
 
 
@@ -7,14 +7,14 @@ const Signin = () => {
 
 
     const [values, setValues] = useState({
-        email: "",
-        password: "",
+        email: "p@gmail.com",
+        password: "12345",
         error: "",
         loading: "",
         redirect : ""
     })
 
-    const {email, password, error, loading, redirect} = values
+    const {email, password, error, redirect} = values
     
 
     const handleChange = name => event => {
@@ -85,7 +85,7 @@ const Signin = () => {
         <div style={{width:"100%"}}>
 
         {redirect ? 
-            <Redirect to="/student" />
+            <Redirect to="/account" />
          : ""}
 
         {errorMessage()}
