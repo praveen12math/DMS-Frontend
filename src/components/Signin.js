@@ -85,7 +85,7 @@ const Signin = () => {
         <div style={{width:"100%"}}>
 
         {redirect ? 
-            <Redirect to="/student" />
+            <Redirect to="/account" />
          : ""}
 
         {errorMessage()}

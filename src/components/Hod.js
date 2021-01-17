@@ -1,10 +1,26 @@
 import React, {useEffect} from 'react'
+import {signout, isAuthenticated} from "../auth/index"
+import {useHistory} from "react-router-dom"
 import Aos from "aos"
 import "aos/dist/aos.css"
 import './Teacher.css'
 
 
 export default function Student() {
+
+    const history = useHistory()
+
+    if(!isAuthenticated()){
+        history.push("/account")
+    }
+
+    const userD = JSON.parse(localStorage.getItem("jwt"))
+    if(userD.user.role === 0){
+        history.push("/student")
+    }
+    else if(userD.user.role === 1){
+        history.push("/teacher")
+    }
 
     useEffect (() => {
         Aos.init({duration: 2000})
@@ -97,7 +113,7 @@ export default function Student() {
         <div
         data-aos="flip-up"
         data-aos-delay="2900"
-         className="col-lg-2 col-sm-6 block myblock">
+         className="col-lg-2 col-sm-6 block myblock" onClick={()=> signout(()=> history.push("/account"))}>
      <i class="fas fa-users-cog" style={{fontSize:"700%", color:"#FF362E"}}></i>
          <p className="text-white text-center">Logout</p>
         </div>
