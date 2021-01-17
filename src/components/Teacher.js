@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import {useHistory} from "react-router-dom"
+import {signout,isAuthenticated} from "../auth/index"
 import './Teacher.css'
 import './Notice'
 
@@ -11,9 +12,22 @@ export default function Student() {
 
     const history = useHistory()
 
+    if(!isAuthenticated()){
+        history.push("/account")
+    }
+
+    const userD = JSON.parse(localStorage.getItem("jwt"))
+    if(userD.user.role === 0){
+        history.push("/student")
+    }
+    else if(userD.user.role === 2){
+        history.push("/hod")
+    }
+
     useEffect (() => {
         Aos.init({duration: 2000})
     })
+
 
     return (
         <div className="student">
@@ -103,7 +117,7 @@ export default function Student() {
         <div
         data-aos="flip-up"
         data-aos-delay="2900"
-         className="col-lg-2 col-sm-6 block myblock">
+         className="col-lg-2 col-sm-6 block myblock" onClick={()=> signout(()=> history.push("/account"))}>
      <i class="fas fa-users-cog" style={{fontSize:"700%", color:"#FF362E"}}></i>
          <p className="text-white text-center">Logout</p>
         </div>
