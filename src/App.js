@@ -6,7 +6,7 @@ import Teacher from './components/Teacher';
 import Hod from './components/Hod';
 import Attendance from './components/Attendance'
 import Notice from './components/Notice'
-import AccessDenied from './components/AccessDenied'
+import Account from './components/Account';
 
 export default function App() {
   return (
@@ -21,8 +21,7 @@ export default function App() {
     <Route exact path="/hod" component={Hod}/>
     <Route exact path='/attendance' component={Attendance}/>
     <Route exact path='/notice' component={Notice} />
-    <Route exact path='/403' component={AccessDenied} />
-
+    <Route exact path='/account' component={Account} />
 
     </Switch>  
     </Router>
