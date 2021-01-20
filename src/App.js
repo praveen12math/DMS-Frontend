@@ -7,6 +7,7 @@ import Hod from './components/Hod';
 import Attendance from './components/Attendance'
 import Notice from './components/Notice'
 import Account from './components/Account';
+import PageNotFound from './components/PageNotFound';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
     <Route exact path='/attendance' component={Attendance}/>
     <Route exact path='/notice' component={Notice} />
     <Route exact path='/account' component={Account} />
+    <Route component={PageNotFound} />
 
     </Switch>  
     </Router>

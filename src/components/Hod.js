@@ -30,13 +30,13 @@ export default function Student() {
         <div className="student">
         <p 
         data-aos="fade-down" data-aos-duration="4000"
-        className="text2">What are you looking for ?</p>
+        className="text2">What are you looking for ? HOD {userD.user.name}</p>
 
 <div className="row">
         <div 
         data-aos="flip-up"
         
-        className="col-lg-2 col-sm-6 offset-1 block myblock">
+        className="col-lg-2 col-sm-6 offset-sm-1 block myblock">
          <img className="image2" src="1.png" alt="muY"/>
          <p className="text-white text-center">Attendence</p>
         </div>  
@@ -73,14 +73,11 @@ export default function Student() {
          <p className="text-white text-center mt-4">Notice</p>
         </div>
    
-      </div> <br/><br/> <br/><br/>
-
-
-        <div className="row">     
+        
         <div 
         data-aos="flip-up"
         data-aos-delay="1700"
-        className="col-lg-2 col-sm-6 block offset-1 myblock">
+        className="col-lg-2 col-sm-6 block offset-sm-1 myblock">
          <img 
          src="6.png" alt="muY"/>
          <p className="text-white text-center mt-4">Assignment</p>
