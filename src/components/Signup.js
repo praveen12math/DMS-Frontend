@@ -10,10 +10,11 @@ const Signup = () => {
         rollno: "",
         password: "",
         error: "",
+        loading: false,
         success: false
     })
 
-    const {name, email, rollno, password, error, success} = values
+    const {name, email, rollno, password, error, success, loading} = values
 
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value})
@@ -21,11 +22,11 @@ const Signup = () => {
 
     const onSubmit = event => {
         event.preventDefault()
-        setValues({...values, error:false})
+        setValues({...values, error:false, loading: true})
         signup({name, email, rollno, password})
         .then(data => {
             if(data.error){
-                setValues({...values, error: data.error, success: false})
+                setValues({...values, error: data.error, success: false, loading: false})
             }
             else{
                 setValues({...values,
@@ -33,7 +34,8 @@ const Signup = () => {
                 email: "",
                 rollno: "",
                 password: "",
-                success: true
+                success: true,
+                loading: false
             })
             }
         })
@@ -53,30 +55,28 @@ const Signup = () => {
 
             const errorMessage = () => {
                 return (
-                    <div className="row">
-                        <div className="col-md-6 offset-sm-3 text-center">
-                            <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
+                            <div className="alert alert-danger text-center" style={{display: error ? "" : "none"}}>
                                 {error}
                             </div>
-        
-                        </div>
-                    </div>
                 )
             }
         
             const successMessage = () => {
                 return (
-                    <div className="row">
-                        <div className="col-md-6 offset-sm-3 text-center">
-                            <div className="alert alert-success" style={{display: success ? "" : "none"}}>
+                            <div className="alert alert-success text-center" style={{display: success ? "" : "none"}}>
                                 New account created successfully.
                             </div>
-        
-                        </div>
-                    </div>
                 )
             }
+if(loading){
+    if(loading){
+        return(
+            <img src="loader7.gif" alt=""/>
+        )
+    }
+}
 
+else{
 
     return(
         <div style={{width:"100%"}}>
@@ -123,6 +123,7 @@ const Signup = () => {
 </form>
     </div>
     )
+}
 }
 
 

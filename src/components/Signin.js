@@ -14,8 +14,7 @@ const Signin = () => {
         redirect : ""
     })
 
-    const {email, password, error, redirect} = values
-    
+    const {email, password, error, redirect, loading} = values
 
     const handleChange = name => event => {
         setValues({...values, error: false, [name]:event.target.value})
@@ -42,17 +41,16 @@ const Signin = () => {
         .catch(console.log("error in signin"))
     }
 
+//     <div class="alert alert-primary" role="alert">
+//   A simple primary alert—check it out!
+// </div>
 
     const errorMessage = () => {
         return (
-            <div className="row">
-                <div className="col-md-6 offset-sm-3 text-center">
-                    <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
+                    <div className="alert alert-danger text-center" style={{display: error ? "" : "none"}}>
                         {error}
                     </div>
 
-                </div>
-            </div>
         )
     }
 
@@ -69,6 +67,8 @@ const Signin = () => {
     //     )
     // }
 
+    
+
     const seePassword = () => {
         const x = document.getElementById("ipassword")
         if(x.type === "password"){
@@ -79,10 +79,23 @@ const Signin = () => {
         }
             }
 
+            if(loading){
+                return(
+                    <img src="loader7.gif" alt=""/>
+                )
+            }
+    else{
 
     return(
 
         <div style={{width:"100%"}}>
+
+<div class="toast d-flex align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+  <button type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
 
         {redirect ? 
             <Redirect to="/account" />
@@ -120,6 +133,7 @@ const Signin = () => {
 </form>
     </div>
     )
+        }
 }
 
 
