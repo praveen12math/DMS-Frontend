@@ -1,3 +1,13 @@
 .row {
   margin: 0;
 }
+.crossButton {
+  margin-top: 5px;
+  float: right;
+  padding: 5px 10px 5px 10px;
+}
+.crossButton:hover {
+  background-color: red;
+  padding: 5px 10px 5px 10px;
+  color: aliceblue;
+}
