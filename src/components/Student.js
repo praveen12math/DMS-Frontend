@@ -4,6 +4,7 @@ import {isAuthenticated, signout} from "../auth/index"
 import Aos from "aos"
 import "aos/dist/aos.css"
 import { Redirect, useHistory } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 export default function Student() {
@@ -48,9 +49,12 @@ export default function Student() {
         data-aos="flip-down"
         data-aos-delay="500"
         className="col-lg-2 col-sm-6 block myblock">
-         <img className="image3" src="2.png" alt="muY"/>
+        <Link to="/studentLeave">
+        <img className="image3" src="2.png" alt="muY"/>
+         {/* <p className="text-white text-center">Request Leave</p> */}
          <p className="text-white text-center">Request Leave</p>
-        </div>
+        </Link>
+    </div>
 
         <div 
         data-aos="flip-up"
