@@ -73,6 +73,7 @@ export default function Student() {
         </div>
 
         <div 
+        onClick={ ()=> history.push('/notice')}
         data-aos="flip-up"
         data-aos-delay="1400"
         className="col-lg-2 col-sm-6 block myblock">
