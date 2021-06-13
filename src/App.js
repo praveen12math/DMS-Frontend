@@ -7,11 +7,8 @@ import Hod from './components/Hod';
 import Attendance from './components/Attendance'
 import Notice from './components/Notice'
 import Account from './components/Account';
-<<<<<<< HEAD
 import PageNotFound from './components/PageNotFound';
-=======
 import studentLeave from "./components/studentLeave"
->>>>>>> 5639a59... Created Leave component
 
 export default function App() {
   return (
@@ -27,12 +24,9 @@ export default function App() {
     <Route exact path='/attendance' component={Attendance}/>
     <Route exact path='/notice' component={Notice} />
     <Route exact path='/account' component={Account} />
-<<<<<<< HEAD
-    <Route component={PageNotFound} />
-=======
     <Route exact path='/studentLeave' component={studentLeave} />
+    <Route exact path="*" component={PageNotFound} />
 
->>>>>>> 5639a59... Created Leave component
 
     </Switch>  
     </Router>

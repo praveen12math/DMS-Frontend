@@ -7,13 +7,13 @@ export default function studentLeave() {
            
 
            <div className="row">
-            <div className="col-lg-4" style={{backgroundColor: "#2E2F7E", height: "100vh"}}>
+
+           <div className="col-lg-4" style={{backgroundColor: "#2E2F7E", height: "100vh"}}>
            <h3 className="text-center text-white mt-2" >History</h3>
            <br/><br/>
-           <h1 className="text-white">Nothing to display, applied leave application and status will be updated here.</h1>
-          
-          
-            </div>
+           <h1 className="text-white">Nothing to display, applied leave application and status will be updated here.
+           </h1>          
+           </div>
 
             <div className="col-lg-8" style={{backgroundColor: "white", height: "100vh"}}>
          <div className="crossButton">
