@@ -1,6 +1,9 @@
 import {API} from '../backend'
 
 
+
+//NOTICE
+
 //pull all notice
 export const getAllNotice = userD => {
     return fetch(`${API}/getNotice`, {
@@ -56,3 +59,49 @@ export const removeNotice = id => {
         return console.log(err);
     })
 }
+
+
+
+
+// LEAVE
+
+
+//post leave request
+export const addLeave = leave => {
+    return fetch(`${API}/studentleave`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${leave.userD}`,
+            Accept: "application/json",
+           "Content-Type": "application/json"
+        },
+        body: JSON.stringify(leave)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return console.log(err);
+    })
+}
+
+
+
+//get Student leave
+export const getStudentLeave = id => {
+    return fetch(`${API}/getAllNotice/${id.userId}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${id.userD}`,
+            Accept: "application/json",
+           "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return console.log(err);
+    })
+}
+

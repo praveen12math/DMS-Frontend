@@ -1,8 +1,9 @@
 import React,{useEffect, useState} from 'react';
 import { getAllNotice, postNotice, removeNotice } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
-import './Notice.css'
 import 'react-toastify/dist/ReactToastify.css';
+import './Notice.css'
+
 
 const Notice = () => {
 
@@ -101,7 +102,7 @@ AND Rs.600/- (BACKLOG)
   <span className="float-right"><i class="fas fa-trash" onClick={() => onDelete(notice._id)}></i></span>
   }
   {notice.title}</div>  
-  <span className="float-right">{new Date(`${notice.updatedAt}`).toLocaleString()}</span>
+  <span className="float-right"> &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
   <div id="demo2" className="collapse">
   {notice.description}
   </div>
