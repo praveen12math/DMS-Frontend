@@ -64,7 +64,7 @@ export default function StudentLeave() {
            <ToastContainer />
            <div className="row">
 
-           <div className="col-lg-4" style={{backgroundColor: "#2E2F7E", height: "100vh"}}>
+           <div className="col-lg-4" style={{backgroundColor: "#2E2F7E"}}>
            <h3 className="text-center text-white mt-2" >History</h3>
            <br/><br/>
            {studentLeave[0] == null?
@@ -94,7 +94,7 @@ export default function StudentLeave() {
                     
            </div>
 
-            <div className="col-lg-8" style={{backgroundColor: "white", height: "100vh"}}>
+            <div className="col-lg-8" style={{backgroundColor: "white"}}>
          <div className="crossButton">
          <Link to="/student" className="fa fa-times" style={{textDecoration: "none"}}></Link>  
          </div>

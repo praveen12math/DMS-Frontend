@@ -105,3 +105,63 @@ export const getStudentLeave = id => {
     })
 }
 
+
+
+//get leave by Teacher name
+export const getLeaveByTeacherName = name => {
+    return fetch(`${API}/getLeaveByTeacher/${name.user.name}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${name.token}`,
+            Accept: "application/json",
+           "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return console.log(err);
+    })
+}
+
+
+
+//accept leave
+export const acceptLeaveRequest = id => {
+    return fetch(`${API}/acceptResponse/${id.id}` , {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${id.auth.token}`,
+            Accept: "application/json",
+           "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return console.log(err);
+    })
+}
+
+
+
+//reject leave
+export const rejectLeaveRequest = id => {
+    return fetch(`${API}/rejectResponse/${id.id}` , {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${id.auth.token}`,
+            Accept: "application/json",
+           "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return console.log(err);
+    })
+}
+
