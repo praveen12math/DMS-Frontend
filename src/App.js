@@ -9,6 +9,7 @@ import Notice from './components/Notice'
 import Account from './components/Account';
 import PageNotFound from './components/PageNotFound';
 import studentLeave from "./components/studentLeave"
+import LeaveResponseTeacher from './components/LeaveResponseTeacher';
 
 export default function App() {
   return (
@@ -25,7 +26,8 @@ export default function App() {
     <Route exact path='/notice' component={Notice} />
     <Route exact path='/account' component={Account} />
     <Route exact path='/studentLeave' component={studentLeave} />
-    <Route exact path="*" component={PageNotFound} />
+    <Route exact path='/responseLeave' component={LeaveResponseTeacher} />
+    <Route exact path="*" component={PageNotFound} />    
 
 
     </Switch>  
