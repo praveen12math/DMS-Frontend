@@ -45,11 +45,12 @@ export default function Student() {
         </div>  
         
         <div 
+        onClick={() => history.push("/responseLeave")}
         data-aos="flip-down"
         data-aos-delay="500"
         className="col-lg-2 col-sm-6 block myblock">
          <img className="image3" src="2.png" alt="muY"/>
-         <p className="text-white text-center">Request Leave</p>
+         <p className="text-white text-center">Response Leave</p>
         </div>
 
         <div 
