@@ -1,9 +1,12 @@
 import React,{useEffect, useState} from 'react';
 import { getAllNotice, postNotice, removeNotice } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
+import firebase from 'firebase';
+import {firebaseConfig} from "../config/FirebaseConfig"
 import 'react-toastify/dist/ReactToastify.css';
 import './Notice.css'
 
+firebase.initializeApp(firebaseConfig)
 
 const Notice = () => {
 
@@ -11,6 +14,8 @@ const Notice = () => {
 
   var userD = JSON.parse(localStorage.getItem("jwt"))
   userD = userD.token
+
+  const [imageLink, setImageLink] = useState()
 
   const [noticeData, setNoticeData] = useState({
     title: "",
@@ -38,7 +43,7 @@ const Notice = () => {
 
   const onSubmit = event => {
     event.preventDefault()
-    postNotice({title, description, userD})
+    postNotice({title, description, imageLink, userD})
     .then(data => {
        if(data.error){
          return toast("Something went wrong", {type:"danger"})
@@ -59,6 +64,70 @@ const Notice = () => {
      callNotice(userD)
    })
   }
+
+
+
+  const handleImage = async(event) => {
+    try {
+
+      const files = event.target.files[0]
+      const metadata = {
+                contentType: files.type
+      }
+
+      const storageRef = await firebase.storage().ref()
+
+      var uploadTask = storageRef.child("noticeImg/" + files.name).put(files, metadata)
+
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => {
+          var progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+          toast(progress+"%  Please don't submit while 100% complete")
+
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED:
+              toast("Paused");
+              break;
+            case firebase.storage.TaskState.RUNNING:
+              toast("Uploading");
+              break;
+            default:
+              {}
+          }
+
+          if (progress === 100) {
+            toast("Upload complete", { type: "success" });
+          }
+
+        },
+        (error) => {
+          toast("something went wrong in state changed", { type: "error" });
+        },
+        () => {
+          uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then(function (imageLink) {
+              setImageLink(imageLink)
+            })
+            .catch((err) =>
+              toast("somthing error in showing image", { type: "error" })
+            );
+        }
+      )
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+
+console.log(imageLink);
+
+
+
 
     return ( 
         <>
@@ -104,6 +173,8 @@ AND Rs.600/- (BACKLOG)
   {notice.title}</div>  
   <span className="float-right"> &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
   <div id="demo2" className="collapse">
+  <embed src={notice.imageLink} width="100%" style={{height:"100vh"}}/>
+  <br/>
   {notice.description}
   </div>
   </div>
@@ -131,7 +202,9 @@ AND Rs.600/- (BACKLOG)
           value={description}
         />
 <br/>
-        <input type="file" className="form-control" placeholder="Add Image"/>
+        <input type="file" className="form-control" placeholder="Add Image"
+          onChange={(e) => handleImage(e)}
+        />
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
