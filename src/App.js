@@ -8,8 +8,15 @@ import Attendance from './components/Attendance'
 import Notice from './components/Notice'
 import Account from './components/Account';
 import PageNotFound from './components/PageNotFound';
-import studentLeave from "./components/studentLeave"
+import studentLeave from "./components/studentLeave";
+import Books from './components/Books';
 import LeaveResponseTeacher from './components/LeaveResponseTeacher';
+import firebase from 'firebase';
+import {firebaseConfig} from "./config/FirebaseConfig"
+
+
+
+firebase.initializeApp(firebaseConfig)
 
 export default function App() {
   return (
@@ -26,6 +33,8 @@ export default function App() {
     <Route exact path='/notice' component={Notice} />
     <Route exact path='/account' component={Account} />
     <Route exact path='/studentLeave' component={studentLeave} />
+    <Route exact path='/books' component={Books} />
+    <Route exact path="*" component={PageNotFound} />
     <Route exact path='/responseLeave' component={LeaveResponseTeacher} />
     <Route exact path="*" component={PageNotFound} />    
 

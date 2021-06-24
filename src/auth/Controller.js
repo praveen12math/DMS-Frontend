@@ -1,4 +1,6 @@
 import {API} from '../backend'
+import firebase from 'firebase';
+import {ToastContainer, toast} from "react-toastify"
 
 
 
@@ -105,7 +107,7 @@ export const getStudentLeave = id => {
     })
 }
 
-
+<ToastContainer/>
 
 //get leave by Teacher name
 export const getLeaveByTeacherName = name => {
@@ -164,4 +166,72 @@ export const rejectLeaveRequest = id => {
         return console.log(err);
     })
 }
+
+
+
+//Book Section
+
+export const getAllBook = () => {
+    return fetch(`${API}/getAllBook`, {
+        method: "GET"
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+export const addBook = book => {
+    return fetch(`${API}/addBook`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(book)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+
+export const removeBook = async(book) => {
+
+    deleteBookFile(book.link)
+
+    return fetch(`${API}/removeBook/${book.id}`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+const deleteBookFile = async(bookLink) => {
+
+    const bookRef = await firebase.storage().refFromURL(bookLink)
+    bookRef.delete()
+    .then(() => {
+      toast("Book file deleted ", {type:"success"})
+    })
+    .catch((err) => {
+        toast("Uh-oh, an error occurred!", {type:"error"})
+    })
+  }
 

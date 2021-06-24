@@ -1,0 +1,56 @@
+.text1 {
+  color: white;
+  text-align: center;
+  font-weight: 900;
+}
+.bookBlock {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.book_title {
+  color: white;
+  text-align: center;
+}
+.book_desc {
+  color: #1f2287;
+}
+.book_box {
+  border: 1px solid white;
+}
+.backArrow {
+  color: white;
+  padding: 3px;
+}
+.backArrow:hover {
+  color: red;
+  background-color: white;
+  padding: 3px;
+}
+.my-card {
+  position: absolute;
+  left: 40%;
+  top: -20px;
+  border-radius: 50%;
+}
+@media only screen and (min-width: 992px) {
+  .portion1 {
+    height: 100vh;
+    background-color: #2d6a4f;
+    border-radius: 0px 300px 0px 0px;
+  }
+  .portion2 {
+    height: 100vh;
+  }
+  .thought {
+    color: white;
+    font-weight: 900;
+    font-size: 2rem;
+    margin-top: 100px;
+  }
+}
+@media only screen and (max-width: 662px) {
+  .stats {
+    display: none;
+  }
+}

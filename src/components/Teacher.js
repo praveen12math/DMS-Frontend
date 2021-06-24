@@ -54,6 +54,7 @@ export default function Student() {
         </div>
 
         <div 
+        onClick={() => history.push("/books")}
         data-aos="flip-up"
         data-aos-delay="800"
         className="col-lg-2 col-sm-6 block myblock">
