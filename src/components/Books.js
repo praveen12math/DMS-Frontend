@@ -214,7 +214,6 @@ aria-label="Recipient's username" aria-describedby="basic-addon2"/>
       
      <div className="container portion2"> <br/><br/>
       <div className="row">
-      {allBook[0] == null? "" : <>
       {allBook.map(book => (
       
        <div className="col-lg-4">
@@ -239,7 +238,6 @@ onClick={() => onDelete(book._id, book.bookLink)}></i></span>
        </div>
 
       ))}
-     </>  }
 
          
    {/* Pagination goes here */}
