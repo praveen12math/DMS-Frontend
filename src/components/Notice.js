@@ -2,11 +2,8 @@ import React,{useEffect, useState} from 'react';
 import { getAllNotice, postNotice, removeNotice } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
 import firebase from 'firebase';
-import {firebaseConfig} from "../config/FirebaseConfig"
 import 'react-toastify/dist/ReactToastify.css';
 import './Notice.css'
-
-firebase.initializeApp(firebaseConfig)
 
 const Notice = () => {
 
