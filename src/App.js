@@ -34,7 +34,6 @@ export default function App() {
     <Route exact path='/account' component={Account} />
     <Route exact path='/studentLeave' component={studentLeave} />
     <Route exact path='/books' component={Books} />
-    <Route exact path="*" component={PageNotFound} />
     <Route exact path='/responseLeave' component={LeaveResponseTeacher} />
     <Route exact path="*" component={PageNotFound} />    
 
