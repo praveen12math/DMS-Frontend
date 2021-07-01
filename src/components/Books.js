@@ -34,12 +34,6 @@ const Books =  () => {
     getBook()
   },[])
 
-var userD
-
-if(!myjwt === null){
-  userD = userD.token
-}
-
 
 const handleChange = name => event => {
   setBookData({...bookData, [name]:event.target.value})
@@ -56,6 +50,7 @@ const handleChange = name => event => {
          return toast("Something went wrong", {type:"danger"})
        }
       toast("Book added", {type:"success"})
+      getBook()
     })
   }
 
@@ -124,14 +119,9 @@ const handleChange = name => event => {
           return toast("Somthing went wrong", {type:"error"})
         }
         toast("Book delete success", {type:"success"})
+        getBook()
       })
   }
-
-
-
-
-
-
 
 
   
@@ -231,7 +221,7 @@ onClick={() => onDelete(book._id, book.bookLink)}></i></span>
           <p className="ml-2">Publication: {book.publication}</p>
           <div className="text-center">
            <button className="btn btn-success mr-2 mb-2"><i className="fa fa-download" ></i></button>   
-           <a href={book.bookLink} target="_blank"><button className="btn btn-warning mb-2"><i className="fa fa-book" style={{color: "white"}} ></i></button> </a>
+           <a href={book.bookLink} target="_blank" rel="noreferrer"><button className="btn btn-warning mb-2"><i className="fa fa-book" style={{color: "white"}} ></i></button> </a>
           </div>  
         </div>
         </div>   

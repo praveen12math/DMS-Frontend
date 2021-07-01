@@ -17,6 +17,7 @@ export default function Student() {
 
     const userD = JSON.parse(localStorage.getItem("jwt"))
 
+
     return (
         <>
         
@@ -37,12 +38,16 @@ export default function Student() {
         
 
         <div className="row">
+
         <div 
         data-aos="flip-up"
-        
         className="col-lg-2 col-sm-6 offset-sm-1 block myblock">
+        <Link to={{pathname: "/seeAttendanceStudent", 
+        params: {rollno: userD.user.rollno}}}
+        >
          <img className="image2" src="1.png" alt="muY"/>
-         <p className="text-white text-center">Attendence</p>
+         <p className="text-white text-center" style={{textDecoration:"none"}}>Attendence</p>
+         </Link>
         </div>  
         
         <div 

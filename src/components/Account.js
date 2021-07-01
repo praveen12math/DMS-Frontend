@@ -31,7 +31,7 @@ const Account = () => {
     return ( 
 
         
-        <div className="accountBody">
+        <div className="accountBody accountPage">
 
         {login ? <img src="user (1).svg" className="accountUserImage" alt=""/> : <img src="add-friend.svg" className="accountUserImage" alt=""/>}
  {/* {isAuthenticated() 

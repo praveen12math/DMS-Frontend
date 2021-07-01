@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { acceptLeaveRequest, rejectLeaveRequest, getLeaveByTeacherName } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
+import {Link} from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 
 const LeaveResponseTeacher = () => {
@@ -46,11 +47,13 @@ const LeaveResponseTeacher = () => {
 
     return ( 
         <div style={{backgroundColor: "#2E2F7E", minHeight: "100vh" }}>
+        <Link to="/student" className="fa fa-arrow-left ml-2 mt-2 backArrow" ></Link>
         <br/>
         <div className="container">
         <h1 className="text-white">Take Action</h1>
 
 <div className="row">
+
 <ToastContainer/>
 
 {leaveData.map(leave => (
