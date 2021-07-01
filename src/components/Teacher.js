@@ -117,7 +117,7 @@ export default function Student() {
         data-aos="flip-up"
         data-aos-delay="2900"
          className="col-lg-2 col-sm-6 block myblock" onClick={()=> signout(()=> history.push("/account"))}>
-     <i class="fas fa-users-cog" style={{fontSize:"700%", color:"#FF362E"}}></i>
+     <i class="fas fa-sign-out-alt" style={{fontSize:"700%", color:"#FF362E"}}></i>
          <p className="text-white text-center">Logout</p>
         </div>
 

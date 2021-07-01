@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import {ToastContainer, toast} from "react-toastify"
 
 
-
+// DONE
 //NOTICE
 
 //pull all notice
@@ -46,6 +46,9 @@ export const postNotice = notice => {
 
 //delete notice
 export const removeNotice = id => {
+
+    deleteNoticeImage(id.image)
+
     return fetch(`${API}/notice/${id.id}` ,{
         method: "DELETE",
         headers: {
@@ -63,8 +66,21 @@ export const removeNotice = id => {
 }
 
 
+const deleteNoticeImage = async(imageLink) => {
+
+    const imageRef = await firebase.storage().refFromURL(imageLink)
+    imageRef.delete()
+    .then(() => {
+      toast("Notice file deleted ", {type:"success"})
+    })
+    .catch((err) => {
+        toast("Uh-oh, an error occurred!", {type:"error"})
+    })
+  }
 
 
+
+// DONE
 // LEAVE
 
 
@@ -168,7 +184,7 @@ export const rejectLeaveRequest = id => {
 }
 
 
-
+// DONE
 //Book Section
 
 export const getAllBook = () => {
@@ -235,3 +251,87 @@ const deleteBookFile = async(bookLink) => {
     })
   }
 
+
+
+//   DONE
+// Attendance
+
+//Add new Module
+export const addAttendanceModule = module  => {
+    return fetch(`${API}/addAttendanceModule`, {
+        method : "POST",
+        headers:{
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(module)
+    })
+    .then(res => {
+        return res.json(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+//Get attendance module by teacher
+export const getAttendanceModule = teacher => {
+    return fetch(`${API}/attendanceModule/${teacher}`, {
+        method: "GET",
+        headers:{
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => {
+        return res.json(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+//Remove Module by teacher
+export const removeAttendanceModule = modalId => {
+    return fetch(`${API}/removeModule/${modalId}`, {
+        method: "DELETE"
+    })
+    .then(res => {
+        return res.json(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+//Add new Attendance
+export const addAttendance = data => {
+    return fetch(`${API}/addAttendance/${data.id}`, {
+        method: "POST",
+        headers:{
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+       body: JSON.stringify(data)
+    })
+    .then(res => {
+        return res.json(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+
+//See attendane By Student
+export const seeAttendanceStudent = rollno => {
+    return fetch(`${API}/getAttendanceStudent/${rollno}`, {
+        method: "GET"
+    })
+    .then(res => {
+        return res.json(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

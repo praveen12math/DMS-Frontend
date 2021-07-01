@@ -2,10 +2,13 @@ import React,{useEffect, useState} from 'react';
 import { getAllNotice, postNotice, removeNotice } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
 import firebase from 'firebase';
+import {v4 as uuidv4} from "uuid"
+import {Link} from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 import './Notice.css'
 
 const Notice = () => {
+
 
   const myjwt = JSON.parse(localStorage.getItem("jwt"))
 
@@ -51,8 +54,8 @@ const Notice = () => {
   }
 
 
-  const onDelete = (id) => {
-    removeNotice({id, userD})
+  const onDelete = (id, image) => {
+    removeNotice({id, image, userD})
     .then(data => {
       if(data.error){
         return toast("Something went wrong", {type:"danger"})
@@ -74,7 +77,7 @@ const Notice = () => {
 
       const storageRef = await firebase.storage().ref()
 
-      var uploadTask = storageRef.child("noticeImg/" + files.name).put(files, metadata)
+      var uploadTask = storageRef.child("noticeImg/" + uuidv4()).put(files, metadata)
 
       uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
@@ -121,13 +124,13 @@ const Notice = () => {
 
 
 
-console.log(imageLink);
 
 
 
 
     return ( 
         <>
+        <Link to="/student" className="fa fa-arrow-left ml-2 mt-2 backArrow bg-dark" ></Link>
 <ToastContainer />
 <div className='row'>
 <div className='col-lg-10'></div>
@@ -165,12 +168,14 @@ AND Rs.600/- (BACKLOG)
   <div className='mb-4 mt-5'>
   <div type="button" className="btn btn-block btn-info" data-toggle="collapse" data-target="#demo2">
   {myjwt.user.role === 0? "" :
-  <span className="float-right"><i class="fas fa-trash" onClick={() => onDelete(notice._id)}></i></span>
+  <span className="float-right"><i class="fas fa-trash" onClick={() => onDelete(notice._id, notice.imageLink)}></i></span>
   }
   {notice.title}</div>  
   <span className="float-right"> &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
   <div id="demo2" className="collapse">
-  <embed src={notice.imageLink} width="100%" style={{height:"100vh"}}/>
+  {notice.imageLink?
+  <embed src={notice.imageLink} style={{height:"100vh", width:"100%"}}/>
+  : ""}
   <br/>
   {notice.description}
   </div>
