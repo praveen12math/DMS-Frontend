@@ -335,3 +335,72 @@ export const seeAttendanceStudent = rollno => {
         console.log(err);
     })
 }
+
+
+
+// DONE
+//Paper Section
+
+export const getAllPaper = () => {
+    return fetch(`${API}/getAllPaper`, {
+        method: "GET"
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+export const addPaper = paper => {
+    return fetch(`${API}/addPaper`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(paper)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+
+export const removePaper = async(paper) => {
+
+    deletePaperFile(paper.link)
+
+    return fetch(`${API}/removePaper/${paper.id}`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+const deletePaperFile = async(paperLink) => {
+
+    const paperRef = await firebase.storage().refFromURL(paperLink)
+    paperRef.delete()
+    .then(() => {
+      toast("Paper file deleted ", {type:"success"})
+    })
+    .catch((err) => {
+        toast("Uh-oh, an error occurred!", {type:"error"})
+    })
+  }

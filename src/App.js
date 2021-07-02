@@ -16,6 +16,7 @@ import {firebaseConfig} from "./config/FirebaseConfig"
 import TakeAttendance from './components/TakeAttendance';
 import SeeAttendanceTeacher from './components/SeeAttendanceTeacher';
 import SeeAttendanceStudent from './components/SeeAttendanceStudent';
+import Paper from './components/Paper';
 
 
 firebase.initializeApp(firebaseConfig)
@@ -40,6 +41,7 @@ export default function App() {
     <Route exact path="/takeAttendance" component={TakeAttendance}/>
     <Route exact path="/seeAttendanceTeacher" component={SeeAttendanceTeacher}/>
     <Route exact path="/seeAttendanceStudent" component={SeeAttendanceStudent}/>
+    <Route exact path="/paper" component={Paper}/>
     <Route exact path="*" component={PageNotFound} />
 
 
