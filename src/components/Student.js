@@ -71,6 +71,7 @@ export default function Student() {
         </div>
 
         <div
+        onClick={ ()=> history.push('/paper')}
         data-aos="flip-down"
         data-aos-delay="1100"
          className="col-lg-2 col-sm-6 block myblock">
