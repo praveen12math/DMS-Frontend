@@ -36,16 +36,17 @@ const Attendance = () => {
     })
   }
 
-  const getModule = (id) => {
-    getAttendanceModule(id)
+  const getModule = (id, token) => {
+    getAttendanceModule({id, token})
     .then(res => {
+      console.log(res);
       setAttendaneModule(res)
     })
   }
 
   useEffect(() => {
-    getModule(myjwt.user._id)
-  },[myjwt.user._id])
+    getModule(myjwt.user._id, myjwt.token)
+  },[myjwt.user._id, myjwt.token])
 
 
 
@@ -64,7 +65,7 @@ const Attendance = () => {
         removeAttendanceModule(modalId)
         .then(res => {
           console.log(res);
-          getModule(myjwt.user._id)
+          getModule(myjwt.user._id, myjwt.token)
         })
         .catch(err => {
           console.log("Something went wrong");

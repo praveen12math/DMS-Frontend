@@ -276,9 +276,10 @@ export const addAttendanceModule = module  => {
 
 //Get attendance module by teacher
 export const getAttendanceModule = teacher => {
-    return fetch(`${API}/attendanceModule/${teacher}`, {
+    return fetch(`${API}/attendanceModule/${teacher.id}`, {
         method: "GET",
         headers:{
+            Authorization: `Bearer ${teacher.token}`,
             Accept: "application/json",
             "Content-Type": "application/json"
         }
@@ -325,8 +326,13 @@ export const addAttendance = data => {
 
 //See attendane By Student
 export const seeAttendanceStudent = rollno => {
-    return fetch(`${API}/getAttendanceStudent/${rollno}`, {
-        method: "GET"
+    return fetch(`${API}/getAttendanceStudent/${rollno.rollno}`, {
+        method: "GET",
+        headers:{
+            Authorization: `Bearer ${rollno.token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
     })
     .then(res => {
         return res.json(res)

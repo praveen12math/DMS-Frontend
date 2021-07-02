@@ -5,18 +5,22 @@ import {Link} from "react-router-dom"
 
 const SeeAttendanceStudent = (params) => {
 
-     const rollno = params.location.params.rollno
+  const myjwt = JSON.parse(localStorage.getItem("jwt"))
+
+     const rollno = myjwt.user.rollno
      const [myData, setMyData] = useState([])
 
 
-
-     useEffect(() => {
-         seeAttendanceStudent(rollno)
+    const seeAttendance = (rollno, token) => {
+      seeAttendanceStudent({rollno, token})
          .then(res => {
-             console.log(res);
              setMyData(res)
          })
-     },[rollno])
+    }
+
+     useEffect(() => {
+      seeAttendance(rollno, myjwt.token)
+     },[rollno, myjwt.token])
 
 
 
