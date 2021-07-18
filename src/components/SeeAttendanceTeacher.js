@@ -13,7 +13,7 @@ const SeeAttendanceTeacher = (params) => {
 <h3 className="text-white"><b>Total Class: {times}</b>
 <b className="ml-5">Class Name: {subject}</b>
 </h3>
-<table className="table table-dark">
+<table className="table table-dark table-hover">
     <thead>
         <tr>
             <th>RollNo</th>
@@ -27,7 +27,7 @@ const SeeAttendanceTeacher = (params) => {
    <tr>
        <th>{data.rollno}</th>
        <th>{data.value}</th>
-       <th>{Math.round(data.value/times*100)}%</th>
+       <th>{(data.value/times*100).toFixed(2)}%</th>
    </tr>
 </>
 ))}
