@@ -3,8 +3,7 @@ import firebase from 'firebase';
 import {ToastContainer, toast} from "react-toastify"
 
 
-// DONE
-//NOTICE
+// DONE    NOTICE Section
 
 //pull all notice
 export const getAllNotice = userD => {
@@ -80,8 +79,7 @@ const deleteNoticeImage = async(imageLink) => {
 
 
 
-// DONE
-// LEAVE
+// DONE     LEAVE Section
 
 
 //post leave request
@@ -184,8 +182,7 @@ export const rejectLeaveRequest = id => {
 }
 
 
-// DONE
-//Book Section
+// DONE    Book Section
 
 export const getAllBook = () => {
     return fetch(`${API}/getAllBook`, {
@@ -253,8 +250,7 @@ const deleteBookFile = async(bookLink) => {
 
 
 
-//   DONE
-// Attendance
+//   DONE   Attendance Section
 
 //Add new Module
 export const addAttendanceModule = module  => {
@@ -344,8 +340,7 @@ export const seeAttendanceStudent = rollno => {
 
 
 
-// DONE
-//Paper Section
+// DONE Paper Section
 
 export const getAllPaper = () => {
     return fetch(`${API}/getAllPaper`, {
@@ -410,3 +405,86 @@ const deletePaperFile = async(paperLink) => {
         toast("Uh-oh, an error occurred!", {type:"error"})
     })
   }
+
+
+  //DONE:    Assignment Section
+
+  //Add Assignment by Student
+  
+  export const addAssignment = assignemnt => {
+      return fetch(`${API}/addAssignment`, {
+          method: "POST",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(assignemnt)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .catch(err => {
+          return err
+      })
+  }
+
+
+  //Get all Assignment of Student
+
+  export const getAllAssignmentStudent = data => {
+      return fetch(`${API}/getAssignmentOfStudent/${data.id}`, {
+          method: "GET",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${data.token}`
+          }
+      })
+      .then(res => {
+            return res.json()
+      })
+      .catch(err => {
+        return err
+    })
+  }
+
+
+  //Get all Assignment by Teacher
+  export const getAllAssignmentByTeacher = data => {
+
+    return fetch(`${API}/getAssignmentByTeacher/${data.name}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${data.token}`
+        }
+    })
+    .then(res => {
+          return res.json()
+    })
+    .catch(err => {
+      return err
+  })
+  }
+
+
+//Update Grade By Teacher
+export const updateGradeByTeacher = data => {
+
+    return fetch(`${API}/responseAssignment/${data.gradeId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${data.userD.token}`
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => {
+          return res.json()
+    })
+    .catch(err => {
+      return err
+  })
+}

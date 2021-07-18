@@ -18,17 +18,17 @@ export default function Student() {
     const userD = JSON.parse(localStorage.getItem("jwt"))
 
 
+    if(!isAuthenticated()){
+        return <Redirect to="account"/>
+    }
+    else if(userD.user.role === 1){
+        return <Redirect to="/teacher"/>
+    }
+    else if(userD.user.role === 2){
+        return <Redirect to="/hod"/>
+    }
+
     return (
-        <>
-        
-        {isAuthenticated() ? userD.user.role === 1 ? <Redirect to="/teacher"/> : "" :
-        
-         <Redirect to="/account" /> }
-
-         {isAuthenticated() ? userD.user.role === 2 ? <Redirect to="/hod"/> : "" :
-        
-        <Redirect to="/account" /> }
-
 
         <div className="student">
         <p 
@@ -90,6 +90,7 @@ export default function Student() {
        
      
         <div 
+        onClick={() => history.push('/studentAssignment')}
         data-aos="flip-up"
         data-aos-delay="1700"
         className="col-lg-2 col-sm-6 block offset-sm-1 myblock">
@@ -132,6 +133,5 @@ export default function Student() {
 
         </div>
         </div>
-        </>
     )
 }

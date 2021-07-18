@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useHistory} from "react-router-dom"
+import {useHistory, Redirect} from "react-router-dom"
 import {signout,isAuthenticated} from "../auth/index"
 import './Teacher.css'
 import './Notice'
@@ -12,25 +12,31 @@ export default function Student() {
 
     const history = useHistory()
 
-    if(!isAuthenticated()){
-        history.push("/account")
-    }
 
     const userD = JSON.parse(localStorage.getItem("jwt"))
-    if(userD.user.role === 0){
-        history.push("/student")
-    }
-    else if(userD.user.role === 2){
-        history.push("/hod")
-    }
+
 
     useEffect (() => {
         Aos.init({duration: 2000})
     })
 
 
+    if(!isAuthenticated()){
+        return <Redirect to="account"/>
+    }
+    else if(userD.user.role === 0){
+        return <Redirect to="/student"/>
+    }
+    else if(userD.user.role === 2){
+        return <Redirect to="/hod"/>
+    }
+
+
+
     return (
-        <div className="student">
+    
+<>
+       <div className="student">
         <p 
         data-aos="fade-down" data-aos-duration="4000"
         className="text2">What are you looking for ? Professor {userD.user.name}</p>
@@ -82,6 +88,8 @@ export default function Student() {
    
          
         <div 
+        onClick={ ()=> history.push('/teacherAssignment')}
+
         data-aos="flip-up"
         data-aos-delay="1700"
         className="col-lg-2 col-sm-6 block offset-sm-1 myblock">
@@ -125,6 +133,7 @@ export default function Student() {
         </div>
         
         </div>
+        </>
     )
 
 }

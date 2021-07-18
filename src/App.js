@@ -17,6 +17,8 @@ import TakeAttendance from './components/TakeAttendance';
 import SeeAttendanceTeacher from './components/SeeAttendanceTeacher';
 import SeeAttendanceStudent from './components/SeeAttendanceStudent';
 import Paper from './components/Paper';
+import StudentAssignment from './components/StudentAssignment';
+import TeacherAssignment from './components/TeacherAssignment';
 
 
 firebase.initializeApp(firebaseConfig)
@@ -42,6 +44,8 @@ export default function App() {
     <Route exact path="/seeAttendanceTeacher" component={SeeAttendanceTeacher}/>
     <Route exact path="/seeAttendanceStudent" component={SeeAttendanceStudent}/>
     <Route exact path="/paper" component={Paper}/>
+    <Route exact path="/studentAssignment" component={StudentAssignment}/>
+    <Route exact path="/teacherAssignment" component={TeacherAssignment} />
     <Route exact path="*" component={PageNotFound} />
 
 

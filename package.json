@@ -9,7 +9,7 @@
     "aos": "^2.3.4",
     "chart.js": "^3.4.0",
     "firebase": "^8.6.8",
-    "jquery": "^3.5.1",
+    "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "react": "^17.0.1",

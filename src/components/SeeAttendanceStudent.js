@@ -42,7 +42,7 @@ const SeeAttendanceStudent = (params) => {
         <h4>Subject: {list.subject}</h4>
         <h4>Rollno: {myData.rollno}</h4>
         <h4>Total Class: {list.times}</h4>
-        <h4>Attendance: {myData.value/list.times*100}%</h4>
+        <h4>Attendance: {(myData.value/list.times*100).toFixed(2)}%</h4>
         </div>
 
         <div className="col-lg-6">

@@ -105,24 +105,11 @@ export default function StudentLeave() {
 
          <form>
   <div className="row">
-    <div className="col">
-    <label>Name</label>
-      <input type="text" className="form-control"
-        onChange={hanndleChange("name")}
-        value={name}
-      />
-    </div>
   
   </div> <br/>
 
   <div className="row">
-    <div className="col">
-    <label>Roll no</label>
-      <input type="text" className="form-control"
-        value={rollno}
-        onChange={hanndleChange("rollno")}
-      />
-    </div>
+
     <div className="col">
     <label>Cordinator</label>
       <input type="text" className="form-control"
