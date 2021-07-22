@@ -125,7 +125,7 @@ export const getStudentLeave = id => {
 
 //get leave by Teacher name
 export const getLeaveByTeacherName = name => {
-    return fetch(`${API}/getLeaveByTeacher/${name.user.name}`, {
+    return fetch(`${API}/getLeaveByTeacher/${name.name}`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${name.token}`,
@@ -488,3 +488,56 @@ export const updateGradeByTeacher = data => {
       return err
   })
 }
+
+
+
+
+
+export const removeAssignment = async(assignment) => {
+
+    console.log(assignment.user.token);
+
+    deleteAssignmentFile(assignment.link)
+
+    return fetch(`${API}/removeAssignment/${assignment.id}`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${assignment.user.token}`
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+const deleteAssignmentFile = async(assignmentLink) => {
+
+    const assignmentRef = await firebase.storage().refFromURL(assignmentLink)
+    assignmentRef.delete()
+    .then(() => {
+      toast("Assignment file deleted ", {type:"success"})
+    })
+    .catch((err) => {
+        toast("Uh-oh, an error occurred!", {type:"error"})
+    })
+  }
+
+
+  //DONE   Get All teacher Name
+  export const getAllTeacherName = () => {
+      return fetch(`${API}/getAllTeacherName`, {
+          method: "GET"
+      })
+      .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+  }

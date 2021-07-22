@@ -83,7 +83,7 @@ const Notice = () => {
         firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot) => {
           var progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-          toast(progress+"%  Please don't submit while 100% complete")
+          toast(progress+"%  Please don't submit while 100% completing")
 
           switch (snapshot.state) {
             case firebase.storage.TaskState.PAUSED:

@@ -17,10 +17,23 @@ const LeaveResponseTeacher = () => {
         })
     }
 
+    console.log(leaveData);
 
     useEffect(() => {
-        fetchData(auth)
-    },[auth])
+
+        const name = auth.user.name
+            const token = auth.token
+
+        const fetchMyData = (name, token) => {
+            
+            getLeaveByTeacherName({name, token})
+            .then(res => {
+                setLeaveData(res)
+            })
+        }
+
+        fetchMyData(name, token)
+    },[auth.user.name, auth.token])
 
 
     const onAccept = id => {
@@ -62,11 +75,12 @@ const LeaveResponseTeacher = () => {
     <div className="card border-light mb-3 bg-transparent text-white">
   <div className="card-header bg-white text-warning"><b><i className="fas fa-exclamation-circle"/> {leave.status}  </b>
    <span className="float-right">
-   {new Date(`${leave.updatedAt}`).toLocaleString()}
+   <b>Updated At: {new Date(`${leave.updatedAt}`).toLocaleString()}</b>
    </span>
    </div>
   <div className="card-body">
   Name: {leave.name} <span className="float-right">Roll No: {leave.rollno}</span>
+  Applied At: {new Date(`${leave.createdAt}`).toLocaleString()}
     <h5 className="card-title">Subject: {leave.subject}</h5>
     <p className="card-text">Description: {leave.description}</p>
   </div>
@@ -103,11 +117,12 @@ const LeaveResponseTeacher = () => {
   <div className="card-header bg-white"> {leave.status === "Accept"? <span className="text-success"><b><i class="fas fa-check-circle"/> Accepted</b></span>
   : <span className="text-danger"><b><i class="fas fa-times-circle"/> Rejected </b></span>}
    <span className="float-right text-dark">
-   {new Date(`${leave.updatedAt}`).toLocaleString()}
+   <b>Updated At: {new Date(`${leave.updatedAt}`).toLocaleString()}</b>
    </span>
    </div>
   <div className="card-body">
   Name: {leave.name} <span className="float-right">Roll No: {leave.rollno}</span>
+  Applied At: {new Date(`${leave.createdAt}`).toLocaleString()}
     <h5 className="card-title">Subject: {leave.subject}</h5>
     <p className="card-text">{leave.description}</p>
   </div>

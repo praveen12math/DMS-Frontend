@@ -1,27 +1,28 @@
 import React,{useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { addLeave, getStudentLeave } from '../auth/Controller';
+import { addLeave, getAllTeacherName, getStudentLeave } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function StudentLeave() {
 
   var userD = JSON.parse(localStorage.getItem("jwt"))
+  var userD2 = JSON.parse(localStorage.getItem("jwt"))
   const userId = userD.user._id
+  const [allTeacherName, setAllTeacherName] = useState([])
   userD = userD.token
 
   const [studentLeave, setStudentLeave] = useState([])
-
+  
   const [values, setValues] = useState({
-    name: "",
-    rollno: "",
+    name: userD2.user.name,
+    rollno: userD2.user.rollno,
     cordinator: "",
     subject: "",
     description: ""
   })
 
   const {name, rollno, cordinator, subject, description} = values
-
 
   const hanndleChange = name => event => {
     setValues({...values, [name]:event.target.value})
@@ -54,9 +55,12 @@ export default function StudentLeave() {
 
   useEffect(() => {
     getNotice(userId, userD)
-  },[userId, userD])
 
-  console.log(studentLeave);
+      getAllTeacherName()
+      .then(res => {
+        setAllTeacherName(res)
+      })
+  },[userId, userD])
 
     return (
         <div>
@@ -80,12 +84,14 @@ export default function StudentLeave() {
    : leave.status === "Accept"? <span className="text-success"><b><i class="fas fa-check-circle"></i> Accepted</b></span> : ""
    }  
    <span className="float-right">
-   {new Date(`${leave.updatedAt}`).toLocaleString()}
+   <b>Updated At: {new Date(`${leave.updatedAt}`).toLocaleString()}</b>
    </span>
    </div>
   <div class="card-body">
-    <h5 class="card-title">{leave.subject}</h5>
-    <p class="card-text">{leave.description}</p>
+    <h5 class="card-title">Subject: <b>{leave.subject}</b></h5>
+    <b>Created At: {new Date(`${leave.createdAt}`).toLocaleString()}</b>
+    <p class="card-text">Cordinator: {leave.cordinator}<br/>
+    {leave.description}</p>
   </div>
 </div>
            ))}
@@ -112,10 +118,19 @@ export default function StudentLeave() {
 
     <div className="col">
     <label>Cordinator</label>
-      <input type="text" className="form-control"
+    <select className="form-select form-control" aria-label="Default select example"
         value={cordinator}
         onChange={hanndleChange("cordinator")}
-      />
+>
+  <option selected>Select Teacher</option>
+  {allTeacherName.map(name => (
+    <option value={name}>{name}</option>
+  ))}
+</select>
+      {/* <input type="text" className="form-control"
+        value={cordinator}
+        onChange={hanndleChange("cordinator")}
+      /> */}
     </div>
   </div> <br/>
    

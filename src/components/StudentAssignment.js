@@ -3,12 +3,14 @@ import {v4 as uuidv4} from "uuid"
 import {ToastContainer, toast} from "react-toastify"
 import firebase from 'firebase';
 import 'react-toastify/dist/ReactToastify.css';
-import { addAssignment, getAllAssignmentStudent } from '../auth/Controller';
+import { addAssignment, getAllAssignmentStudent, getAllTeacherName, removeAssignment } from '../auth/Controller';
+import { Link } from 'react-router-dom';
 
 
 const StudentAssignment = () => {
 
   const [studentAssignment, setStudentAssignment] = useState([])
+  const [allTeacherName, setAllTeacherName] = useState([])
     const [values, setValues] = useState({
         fileUrl: "",
         teacherName: "",
@@ -33,7 +35,7 @@ const StudentAssignment = () => {
       addAssignment(values)
       .then(res => {
         if(res.error){
-         toast("Somthing went wrong", {type: "error"})
+         return toast("Somthing went wrong", {type: "error"})
         }
         toast("Assignment Submit success", {type:"success"})
 
@@ -47,7 +49,8 @@ const StudentAssignment = () => {
                     sem: "",
 
                   })
-
+        
+        getMyData()
       })
     }
 
@@ -63,10 +66,27 @@ const StudentAssignment = () => {
       })
     }
 
+    function getTeacherName(){
+      getAllTeacherName()
+      .then(res => {
+        setAllTeacherName(res)
+      })
+    }
+
     getData()
+    getTeacherName()
 
     },[userD.user._id, userD.token])
 
+
+    function getMyData(){
+      const id = userD.user._id
+      const token = userD.token
+    getAllAssignmentStudent({id, token})
+    .then(res => {
+      setStudentAssignment(res)
+    })
+  }
 
 
     const handleFile = async(event) => {
@@ -86,13 +106,11 @@ const StudentAssignment = () => {
             firebase.storage.TaskEvent.STATE_CHANGED,
             (snapshot) => {
               var progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+              toast(progress+"%  Please don't submit while 100% completing")
     
               switch (snapshot.state) {
                 case firebase.storage.TaskState.PAUSED:
                   toast("Paused");
-                  break;
-                case firebase.storage.TaskState.RUNNING:
-                  toast("Uploading");
                   break;
                 default:
                   {}
@@ -123,13 +141,26 @@ const StudentAssignment = () => {
         }
       }
 
+
+
+      const onDelete = (id, link, user) => {
+        removeAssignment({id, link, user})
+        .then(res => {
+          if(res.error){
+            return toast("Somthing went wrong", {type:"error"})
+          }
+          toast("Assignment delete success", {type:"success"})
+          getMyData()
+        })
+    }
+
       
 
 
 
     return ( 
         <>
-        
+        <Link to="/student" className="fa fa-arrow-left ml-2 mt-2 backArrow" />
 <ToastContainer/>
 
 <div className="row">
@@ -165,6 +196,10 @@ const StudentAssignment = () => {
     <a href={assignment.fileUrl} target="_blank" rel="noreferrer"><i class="far fa-file-alt text-warning" style={{fontSize:"200%", cursor:"pointer"}}></i>
     </a></span></h5>    
     <p class="card-text">Teacher: {assignment.teacherName}</p>
+    <span className="float-right" style={{ cursor:"pointer"}}><i className="fas fa-trash text-danger float-right" style={{fontSize:"200%"}} 
+    onClick={()=> onDelete(assignment._id, assignment.fileUrl, userD)}
+    ></i>
+    </span>
     <p class="card-text">Teacher Advice: {assignment.advise}</p>
     <p class="card-text">Submit on: {new Date(`${assignment.createdAt}`).toLocaleString()}</p>
     <p class="card-text">Last Update on: {new Date(`${assignment.updatedAt}`).toLocaleString()}</p>
@@ -203,11 +238,16 @@ const StudentAssignment = () => {
       value={sem}
       /><br/>
 
-
-<input type="text" placeholder="Teacher Name" className="form-control"
+<select className="form-select form-control" aria-label="Default select example"
 onChange={handleChange("teacherName")}
 value={teacherName}
-      /><br/>
+>
+  <option selected>Select Teacher</option>
+  {allTeacherName.map(name => (
+    <option value={name}>{name}</option>
+  ))}
+</select>
+<br/>
 
 <input type="file" className="form-control" placeholder="Add File"
 onChange={(e)=> handleFile(e)}

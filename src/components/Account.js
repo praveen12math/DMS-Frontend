@@ -51,7 +51,8 @@ const Account = () => {
 
 
 <div className="col-12">
-   <footer className="foxed-bottom text-white text-center accountFooter" onClick={()=> login ? setLogin(false) : setLogin(true)}>
+   <footer className="foxed-bottom text-white text-center accountFooter" 
+   onClick={()=> login ? setLogin(false) : setLogin(true)} style={{cursor:"pointer"}}>
          {login ? "New ? Create Account" : "Already have account ? Login"}
      </footer>
      </div>
