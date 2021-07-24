@@ -3,7 +3,9 @@ import Signin from './Signin'
 import Signup from './Signup'
 import {Redirect} from "react-router-dom"
 import {isAuthenticated} from "../auth/index"
+import swal from 'sweetalert';
 import "./Account.css"
+import { requestForPasswordRecovery } from '../auth/Controller';
 
 const Account = () => {
 
@@ -53,9 +55,41 @@ const Account = () => {
 <div className="col-12">
    <footer className="foxed-bottom text-white text-center accountFooter" 
    onClick={()=> login ? setLogin(false) : setLogin(true)} style={{cursor:"pointer"}}>
-         {login ? "New ? Create Account" : "Already have account ? Login"}
+         {login ? "New ? Create Account" : "Already have account ? Login"} <br/>         
      </footer>
+
      </div>
+
+<div className="col-5"></div>
+     <div className="col mx-auto text-center"><span className="btn btn-outline-primary text-white"
+     onClick={()=> swal({
+  text: 'Enter your email/username',
+  content: "input",
+  button: {
+    text: "Reset",
+    closeModal: false,
+  },
+})
+.then(email => {
+   requestForPasswordRecovery({email})
+   .then(res => {
+      if(res.err){
+         return swal({
+            title: res.err,
+            icon: "error"
+  });
+      }
+      else{
+         swal({
+    title: res.message,
+    icon: "success"
+  });
+      }
+     
+   })
+})
+}
+     >Reset Password</span></div>
 </div>  
 
 

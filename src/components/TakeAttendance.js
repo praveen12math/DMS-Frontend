@@ -21,11 +21,11 @@ const TakeAttendance = (params) => {
 
      var nRollNo = []
 
-     for(let i=start;i<=end;i++){
+     for(let i=start;i<=end && i>0;i++){
          nRollNo.push(i)
      }
 
-     for(let i=lateralStart;i<=lateralEnd;i++){
+     for(let i=lateralStart;i<=lateralEnd && i>0;i++){
          nRollNo.push(i)
      }
 
@@ -52,6 +52,7 @@ const TakeAttendance = (params) => {
          setPresent([...present, rollno])
      }
 
+     console.log(present);
 
 
      const onSubmit = event => {
@@ -65,6 +66,7 @@ const TakeAttendance = (params) => {
             }
             else{
                 alert("Something went wrong! Try again")
+                setGotoBack(true)
             }
          })
      }

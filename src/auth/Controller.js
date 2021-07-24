@@ -541,3 +541,41 @@ const deleteAssignmentFile = async(assignmentLink) => {
         return err
     })
   }
+
+
+  // DONE  Password Recovery
+
+  //request for password recovery
+  export const requestForPasswordRecovery = email => {
+      return fetch(`${API}/resetPassword`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(email)
+      })
+      .then(res => {
+        return res.json()
+    })
+    .catch(err => {
+    return err
+})
+  }
+
+  export const resetPassword = data => {
+      return fetch(`${API}/resetPassword/${data.token}`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => {
+        return res.json()
+    })
+    .catch(err => {
+    return err
+})
+  }

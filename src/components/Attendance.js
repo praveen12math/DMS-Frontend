@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 //import Clock from 'react-live-clock'
 import { Link} from 'react-router-dom';
+import swal from 'sweetalert';
 import { addAttendanceModule, getAttendanceModule, removeAttendanceModule } from '../auth/Controller';
 import './Attendance.css'
 
 const Attendance = () => {
-
   const myjwt = JSON.parse(localStorage.getItem("jwt"))
 
   const [attendanceModule, setAttendaneModule] = useState([])
@@ -28,8 +28,14 @@ const Attendance = () => {
 
   const onSubmitModule = () => {
     addAttendanceModule(moduleData)
-    .then(
-      getModule(myjwt.user._id)
+    .then(res => {
+      if(res.error){
+      return swal({title:"Something went wrong", icon:"error"})
+      }
+
+      getModule(myjwt.user._id, myjwt.token)
+      swal({title:"Module Added", icon:"success"})
+    }      
     )
     .catch(err => {
       console.log("Error occured");
@@ -39,7 +45,6 @@ const Attendance = () => {
   const getModule = (id, token) => {
     getAttendanceModule({id, token})
     .then(res => {
-      console.log(res);
       setAttendaneModule(res)
     })
   }
@@ -207,7 +212,7 @@ const Attendance = () => {
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary" onClick={onSubmitModule}>Add</button>
+        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={onSubmitModule}>Add</button>
       </div>
     </div>
   </div>
