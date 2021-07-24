@@ -19,6 +19,7 @@ import SeeAttendanceStudent from './components/SeeAttendanceStudent';
 import Paper from './components/Paper';
 import StudentAssignment from './components/StudentAssignment';
 import TeacherAssignment from './components/TeacherAssignment';
+import PasswordRecovery from './components/PasswordRecovery';
 
 
 firebase.initializeApp(firebaseConfig)
@@ -46,6 +47,7 @@ export default function App() {
     <Route exact path="/paper" component={Paper}/>
     <Route exact path="/studentAssignment" component={StudentAssignment}/>
     <Route exact path="/teacherAssignment" component={TeacherAssignment} />
+    <Route exact path="/resetPassword/:token" component={PasswordRecovery} />
     <Route exact path="*" component={PageNotFound} />
 
 

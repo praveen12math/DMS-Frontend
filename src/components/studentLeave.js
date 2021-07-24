@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { addLeave, getAllTeacherName, getStudentLeave } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert';
 
 export default function StudentLeave() {
 
@@ -36,7 +37,7 @@ export default function StudentLeave() {
       if(data.error){
         return toast("Something went wrong", {type:"danger"})
       }
-     toast("Leave Requested", {type:"success"})
+      swal({title:"Leave requested", icon:"success"})
      getNotice(userId, userD)
    })
 

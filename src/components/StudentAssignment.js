@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import 'react-toastify/dist/ReactToastify.css';
 import { addAssignment, getAllAssignmentStudent, getAllTeacherName, removeAssignment } from '../auth/Controller';
 import { Link } from 'react-router-dom';
+import swal from "sweetalert"
 
 
 const StudentAssignment = () => {
@@ -35,9 +36,10 @@ const StudentAssignment = () => {
       addAssignment(values)
       .then(res => {
         if(res.error){
-         return toast("Somthing went wrong", {type: "error"})
+          return swal({title:"Something went wrong", icon:"error"})
         }
-        toast("Assignment Submit success", {type:"success"})
+        //toast("Assignment Submit success", {type:"success"})
+        swal({title:"Your assignment submit success", icon:"success"})
 
         setValues({...values, 
                     fileUrl:"", 
@@ -149,7 +151,7 @@ const StudentAssignment = () => {
           if(res.error){
             return toast("Somthing went wrong", {type:"error"})
           }
-          toast("Assignment delete success", {type:"success"})
+          swal({title:"Assignment Deleted", icon:"success"})
           getMyData()
         })
     }
