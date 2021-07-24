@@ -43,7 +43,10 @@ const PasswordRecovery = () => {
                         return swal({
                             title: res.error,
                             icon: "error"
-                          });
+                          })
+                          .then(
+                            history.push('/account')
+                          )
                     }
 
                     if(res.err){
@@ -59,7 +62,10 @@ const PasswordRecovery = () => {
                     swal({
                         title: res.message,
                         icon: "success"
-                      });
+                      })
+                      .then(
+                        history.push('/account')
+                      )
                 })
             }
 
