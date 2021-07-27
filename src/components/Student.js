@@ -21,11 +21,8 @@ export default function Student() {
     if(!isAuthenticated()){
         return <Redirect to="account"/>
     }
-    else if(userD.user.role === 1){
+    else if(userD.user.role !== 0){
         return <Redirect to="/teacher"/>
-    }
-    else if(userD.user.role === 2){
-        return <Redirect to="/hod"/>
     }
 
     return (
@@ -53,12 +50,11 @@ export default function Student() {
         <div 
         data-aos="flip-down"
         data-aos-delay="500"
-        className="col-lg-2 col-sm-6 block myblock">
-        <Link to="/studentLeave">
+        className="col-lg-2 col-sm-6 block myblock"
+       onClick={ ()=> history.push('/studentLeave')}>
         <img className="image3" src="2.png" alt="muY"/>
          {/* <p className="text-white text-center">Request Leave</p> */}
          <p className="text-white text-center">Request Leave</p>
-        </Link>
     </div>
 
         <div 
@@ -107,7 +103,7 @@ export default function Student() {
          <p className="text-white text-center mt-4">Complain</p>
         </div>
 
-        <div 
+        {/* <div 
         data-aos="flip-up"
         data-aos-delay="2300"
         className="col-lg-2 col-sm-6 block myblock">
@@ -121,7 +117,7 @@ export default function Student() {
         className="col-lg-2 col-sm-6 block myblock">
      <img src="11.png" alt="muY"/>
          <p className="text-white text-center mt-4">Feedback</p>
-        </div>
+        </div> */}
 
         <div
         data-aos="flip-up"

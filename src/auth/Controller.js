@@ -181,6 +181,24 @@ export const rejectLeaveRequest = id => {
     })
 }
 
+//Delete leave
+export const removeLeave = data => {
+    return fetch(`${API}/deleteLeave/${data.id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${data.token}`,
+            Accept: "application/json",
+           "Content-Type": "application/json"
+        }
+    })
+    .then(res => {
+        return res.json(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
 
 // DONE    Book Section
 
@@ -579,3 +597,45 @@ const deleteAssignmentFile = async(assignmentLink) => {
     return err
 })
   }
+
+
+  //DONE  Add Teacher
+
+export const addTeacher = data => {
+    return fetch(`${API}/addTeacher`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${data.token}`
+        },
+
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+export const editTeacher = data => {
+    return fetch(`${API}/editTeacher/${data.id}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${data.token}`
+        },
+
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}

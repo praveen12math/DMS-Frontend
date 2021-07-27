@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { addLeave, getAllTeacherName, getStudentLeave } from '../auth/Controller';
+import { addLeave, getAllTeacherName, getStudentLeave, removeLeave } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import swal from 'sweetalert';
@@ -37,8 +37,18 @@ export default function StudentLeave() {
       if(data.error){
         return toast("Something went wrong", {type:"danger"})
       }
-      swal({title:"Leave requested", icon:"success"})
-     getNotice(userId, userD)
+      
+      if(data.err){
+        return swal({title:data.err, icon:"error"})
+      }
+
+      swal({title:data.message, icon:"success"})
+      getNotice(userId, userD)
+
+      setValues({...values, 
+        cordinator: "",
+        subject: "",
+        description: ""})
    })
 
   }
@@ -62,6 +72,19 @@ export default function StudentLeave() {
         setAllTeacherName(res)
       })
   },[userId, userD])
+
+
+  const onDelete = (id) => {
+    const token = userD
+    removeLeave({token, id})
+    .then(res => {
+      if(res.error){
+        return swal({title:"Something went wrong", icon:"error"})
+      }
+      swal({title:"Application Deleted", icon:"success"})
+      getNotice(userId, userD)
+    })
+}
 
     return (
         <div>
@@ -89,7 +112,12 @@ export default function StudentLeave() {
    </span>
    </div>
   <div class="card-body">
-    <h5 class="card-title">Subject: <b>{leave.subject}</b></h5>
+    <h5 class="card-title">Subject: <b>{leave.subject}</b>
+    <span className="float-right" style={{ cursor:"pointer"}}><i className="fas fa-trash text-danger float-right" style={{fontSize:"150%"}} 
+     onClick={()=> onDelete(leave._id)}
+    ></i>
+    </span>
+    </h5>
     <b>Created At: {new Date(`${leave.createdAt}`).toLocaleString()}</b>
     <p class="card-text">Cordinator: {leave.cordinator}<br/>
     {leave.description}</p>
