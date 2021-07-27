@@ -12,6 +12,7 @@ const StudentAssignment = () => {
 
   const [studentAssignment, setStudentAssignment] = useState([])
   const [allTeacherName, setAllTeacherName] = useState([])
+  const [flag, setFlag] = useState(true)
     const [values, setValues] = useState({
         fileUrl: "",
         teacherName: "",
@@ -120,6 +121,7 @@ const StudentAssignment = () => {
     
               if (progress === 100) {
                 toast("Upload complete", { type: "success" });
+                setFlag(false)
               }
     
             },
@@ -258,7 +260,9 @@ onChange={(e)=> handleFile(e)}
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={onSubmit}>Submit</button>
+        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={onSubmit}
+        disabled={flag}
+        >Submit</button>
       </div>
     </div>
   </div>

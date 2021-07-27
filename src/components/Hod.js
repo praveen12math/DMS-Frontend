@@ -91,21 +91,6 @@ export default function Student() {
          <p className="text-white text-center mt-4">Review Complain</p>
         </div>
 
-        <div 
-        data-aos="flip-up"
-        data-aos-delay="2300"
-        className="col-lg-2 col-sm-6 block myblock">
-     <img src="8.png" alt="muY"/>
-         <p className="text-white text-center mt-4">Timetable</p>
-        </div>
-
-        <div 
-        data-aos="flip-down"
-        data-aos-delay="2600"
-        className="col-lg-2 col-sm-6 block myblock">
-     <img src="11.png" alt="muY"/>
-         <p className="text-white text-center mt-4">Review Feedback</p>
-        </div>
 
         <div
         data-aos="flip-up"

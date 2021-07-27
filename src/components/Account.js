@@ -19,12 +19,10 @@ const Account = () => {
 
             return <Redirect to="/student" />
          }
-         else if(userD === 1){
+         else{
             return <Redirect to="/teacher" />
          }
-         else if(userD === 2){
-            return <Redirect to="/hod" />
-         }
+
      }
      else{
 

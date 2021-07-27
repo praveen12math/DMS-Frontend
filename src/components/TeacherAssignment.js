@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAllAssignmentByTeacher, updateGradeByTeacher } from '../auth/Controller';
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const TeacherAssignment = () => {
 
@@ -55,6 +56,7 @@ const TeacherAssignment = () => {
 
     return ( 
        <>
+       <Link to="/student" className="fa fa-arrow-left ml-2 mt-2 backArrow bg-dark" ></Link>
 <ToastContainer/>
        <h1 className="text-white text-center mb-5">Submitted Assignment</h1>
 

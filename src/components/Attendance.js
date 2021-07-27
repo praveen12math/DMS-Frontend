@@ -79,7 +79,7 @@ const Attendance = () => {
 
     return (
         <>
-
+<Link to="/student" className="fa fa-arrow-left ml-2 mt-2 backArrow bg-dark" ></Link>
 <div className='row mt-4'>
 <div className='col'></div>
 
