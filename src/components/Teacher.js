@@ -190,7 +190,7 @@ export default function Student() {
         data-aos="flip-down"
         data-aos-delay="1100"
         className="col-lg-2 col-sm-6 block myblock">
-     <img src="8.png" alt="muY"/>
+     <i class="fas fa-universal-access" style={{fontSize:"600%", color:"#FFC400"}}/>
          <p className="text-white text-center mt-4">See Teachers</p>
         </div>
 
