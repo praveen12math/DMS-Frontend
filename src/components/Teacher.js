@@ -166,11 +166,12 @@ export default function Student() {
         </div>
 
         <div 
+        onClick={ ()=> history.push('/seeStudent')}
         data-aos="flip-down"
         data-aos-delay="1100"
         className="col-lg-2 col-sm-6 block myblock">
-     <img src="7.png" alt="muY"/>
-         <p className="text-white text-center mt-4">Complain</p>
+     <img src="8.png" alt="muY"/>
+         <p className="text-white text-center mt-4">See Students</p>
         </div>
 
         {/* <div 
@@ -182,6 +183,17 @@ export default function Student() {
         </div> */}
 
 {userD.user.role === 2?
+<>
+
+<div 
+        onClick={ ()=> history.push('/seeTeacher')}
+        data-aos="flip-down"
+        data-aos-delay="1100"
+        className="col-lg-2 col-sm-6 block myblock">
+     <img src="8.png" alt="muY"/>
+         <p className="text-white text-center mt-4">See Teachers</p>
+        </div>
+
         <div 
         data-aos="flip-down"
         data-aos-delay="500"
@@ -190,13 +202,16 @@ export default function Student() {
          data-bs-toggle="modal" data-bs-target="#exampleModal"
      />
          <p className="text-white text-center mt-4">Add Teacher</p>
-        </div> : ""}
+        </div> 
+        
+        </>
+        : ""}
 
         <div
         data-aos="flip-up"
         //data-aos-delay="500"
          className="col-lg-2 col-sm-6 block myblock" onClick={()=> signout(()=> history.push("/account"))}>
-     <i class="fas fa-sign-out-alt" style={{fontSize:"700%", color:"#FF362E"}}></i>
+     <i class="fas fa-sign-out-alt mt-2" style={{fontSize:"700%", color:"#FF362E"}}></i>
          <p className="text-white text-center">Logout</p>
         </div>
 
