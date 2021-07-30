@@ -639,3 +639,57 @@ export const editTeacher = data => {
         return err
     })
 }
+
+
+//DONE  Get All Student
+
+export const getAllStudent = token => {
+    return fetch(`${API}/getAllStudent`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+//DONE  Get All Teacher
+
+export const getAllTeacher = token => {
+    return fetch(`${API}/getAllTeacher`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
+
+
+//DONE  Remove User
+
+export const removeUser = data => {
+    return fetch(`${API}/removeUser/${data.id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${data.tokenId}`
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => {
+        return err
+    })
+}
