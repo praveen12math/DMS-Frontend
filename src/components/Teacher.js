@@ -6,9 +6,8 @@ import './Notice'
 
 import Aos from "aos"
 import "aos/dist/aos.css"
-import { addTeacher, editTeacher } from '../auth/Controller'
+import { addTeacher, editTeacher, removeUser } from '../auth/Controller'
 import swal from 'sweetalert'
-
 
 export default function Student() {
 
@@ -72,7 +71,18 @@ export default function Student() {
       })
     }
 
-    console.log(name);
+
+    const onDelete = (id) => {
+      const tokenId = userD.token
+      removeUser({id, tokenId})
+      .then(res => {
+          if(res.err || res.error){
+             return swal({title:"Something went wrong", icon:"error"})
+          }
+
+          return swal({title: "Teacher deleted", icon:"success"})
+      })
+  }
 
     if(userD.user.newUser){
       return (
@@ -174,13 +184,17 @@ export default function Student() {
          <p className="text-white text-center mt-4">See Students</p>
         </div>
 
-        {/* <div 
+        {userD.user.role === 1?
+         <div 
         data-aos="flip-down"
         data-aos-delay="800"
         className="col-lg-2 col-sm-6 block myblock">
-     <i class="fas fa-user-edit" alt="muY" style={{fontSize:"600%", color:"#FFC400"}}/>
-         <p className="text-white text-center mt-4">Edit Profile</p>
-        </div> */}
+     <i class="fas fa-user-minus" style={{fontSize:"600%", color:"#FFC400"}} 
+       onClick={()=> onDelete(userD.user._id)}
+     />
+         <p className="text-white text-center mt-4">Delete Profile</p>
+        </div>
+        :""}
 
 {userD.user.role === 2?
 <>
