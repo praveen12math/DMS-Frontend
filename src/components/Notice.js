@@ -9,7 +9,6 @@ import './Notice.css'
 
 const Notice = () => {
 
-
   const myjwt = JSON.parse(localStorage.getItem("jwt"))
 
   var userD = JSON.parse(localStorage.getItem("jwt"))
@@ -50,6 +49,11 @@ const Notice = () => {
        }
       toast("Notice Posted", {type:"success"})
       callNotice(userD)
+
+      setNoticeData({...noticeData, 
+        title: "",
+        description: ""
+      })
     })
   }
 
@@ -122,7 +126,15 @@ const Notice = () => {
   }
 
 
-
+var kkdd = ""
+  const getRandomString = () => {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for ( var i = 0; i < 4; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    kkdd = result;
+}
 
 
 
@@ -166,13 +178,14 @@ AND Rs.600/- (BACKLOG)
 {allNotice.map(notice => (
   <>
   <div className='mb-4 mt-5'>
-  <div type="button" className="btn btn-block btn-info" data-toggle="collapse" data-target="#demo2">
+  {getRandomString()}
+  <div type="button" className="btn btn-block btn-info" data-toggle="collapse" data-target={`#${kkdd}`}>
   {myjwt.user.role === 0? "" :
   <span className="float-right"><i class="fas fa-trash" onClick={() => onDelete(notice._id, notice.imageLink)}></i></span>
   }
   {notice.title}</div>  
   <span className="float-right"> &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
-  <div id="demo2" className="collapse">
+  <div id={`${kkdd}`} className="collapse">
   {notice.imageLink?
   <embed src={notice.imageLink} style={{height:"100vh", width:"100%"}}/>
   : ""}
@@ -210,7 +223,7 @@ AND Rs.600/- (BACKLOG)
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary" onClick={onSubmit}>Post</button>
+        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={onSubmit}>Post</button>
       </div>
     </div>
   </div>
