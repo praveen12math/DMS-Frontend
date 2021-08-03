@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { getAllTeacher, removeUser } from '../auth/Controller';
 
@@ -9,9 +9,14 @@ const SeeTeacher = () => {
 
     const userD = JSON.parse(localStorage.getItem("jwt"))
 
-    const tokenId = userD.token
+    var tokenId = ""
+    
+    if(userD){
+        tokenId = userD.token
+    }
 
-    const fetchData = (tokenId) => {
+    const fetchData = (tokenId) => {        
+
         getAllTeacher(tokenId)
         .then(res => {
             setTeacher(res)
@@ -35,6 +40,14 @@ const SeeTeacher = () => {
     useEffect(() => {
         fetchData(tokenId)
     },[tokenId])
+
+
+    if(!tokenId || userD.user.role === 0 || userD.user.role === 1){
+        return( swal({title: "Access Denied", icon:"warning"}),
+         <Redirect to="/account" />
+        )
+     } 
+
 
     return ( 
         <>

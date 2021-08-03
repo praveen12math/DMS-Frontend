@@ -80,7 +80,7 @@ export default function Student() {
              return swal({title:"Something went wrong", icon:"error"})
           }
 
-          return swal({title: "Teacher deleted", icon:"success"})
+          return swal({title: "Account deleted", icon:"success"})
       })
   }
 
@@ -117,7 +117,33 @@ export default function Student() {
        <div className="student">
         <p 
         data-aos="fade-down" data-aos-duration="4000"
-        className="text2">What are you looking for ? Professor {userD.user.name}</p>
+        className="text2">What are you looking for ? Professor {userD.user.name}
+        {userD.user.role === 2?
+        <span className="float-right text-white text-danger"
+        style={{cursor:"pointer"}}
+        onClick={ () =>
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able recover your account!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    onDelete(userD.user._id)
+    swal("Poof! Your account has been deleted!", {
+      icon: "success",
+    },
+    signout(()=> history.push("/account"))
+    )
+  } else {
+    swal("Your account is safe!");
+  }
+})
+         }
+        > Delete My Account</span> : ""}
+        </p>        
 
 <div className="row">
         <div 
@@ -190,7 +216,27 @@ export default function Student() {
         data-aos-delay="800"
         className="col-lg-2 col-sm-6 block myblock">
      <i class="fas fa-user-minus" style={{fontSize:"600%", color:"#FFC400"}} 
-       onClick={()=> onDelete(userD.user._id)}
+       onClick={ () =>
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able recover your account!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    onDelete(userD.user._id)
+    swal("Poof! Your account has been deleted!", {
+      icon: "success",
+    },
+    signout(()=> history.push("/account"))
+    )
+  } else {
+    swal("Your account is safe!");
+  }
+})
+         }
      />
          <p className="text-white text-center mt-4">Delete Profile</p>
         </div>

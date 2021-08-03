@@ -5,6 +5,8 @@ import Aos from "aos"
 import "aos/dist/aos.css"
 import { Redirect, useHistory } from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import { removeUser } from '../auth/Controller'
+import swal from 'sweetalert'
 
 
 export default function Student() {
@@ -23,6 +25,18 @@ export default function Student() {
     }
     else if(userD.user.role !== 0){
         return <Redirect to="/teacher"/>
+    }
+
+    const onDelete = (id) => {
+        const tokenId = userD.token
+        removeUser({id, tokenId})
+        .then(res => {
+            if(res.err || res.error){
+               return swal({title:"Something went wrong", icon:"error"})
+            }
+  
+            return swal({title: "Account deleted", icon:"success"})
+        })
     }
 
     return (
@@ -97,29 +111,37 @@ export default function Student() {
          <p className="text-white text mt-3">Assignment</p>
 
         </div>
-       {/* <div 
-        data-aos="flip-down"
-        data-aos-delay="2000"
-        className="col-lg-2 col-sm-6 block myblock">
-     <img src="7.png" alt="muY"/>
-         <p className="text-white text-center mt-4">Complain</p>
-        </div>  */}
-
-        {/* <div 
-        data-aos="flip-up"
-        data-aos-delay="2300"
-        className="col-lg-2 col-sm-6 block myblock">
-     <img src="8.png" alt="muY"/>
-         <p className="text-white text-center mt-4">Timetable</p>
-        </div>
+    
 
         <div 
         data-aos="flip-down"
-        data-aos-delay="2600"
+        data-aos-delay="800"
         className="col-lg-2 col-sm-6 block myblock">
-     <img src="11.png" alt="muY"/>
-         <p className="text-white text-center mt-4">Feedback</p>
-        </div> */}
+     <i class="fas fa-user-minus" style={{fontSize:"600%", color:"#FFC400"}} 
+       onClick={ () =>
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able recover your account!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    onDelete(userD.user._id)
+    swal("Poof! Your account has been deleted!", {
+      icon: "success",
+    },
+    signout(()=> history.push("/account"))
+    )
+  } else {
+    swal("Your account is safe!");
+  }
+})
+         }
+     />
+         <p className="text-white text-center mt-4">Delete Profile</p>
+        </div>
 
         <div
         data-aos="flip-up"
