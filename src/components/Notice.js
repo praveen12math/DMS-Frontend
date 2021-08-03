@@ -18,10 +18,11 @@ const Notice = () => {
 
   const [noticeData, setNoticeData] = useState({
     title: "",
-    description: ""
+    description: "",
+    postedBy: myjwt.user.name
   })
 
-  const {title, description} = noticeData
+  const {title, description, postedBy} = noticeData
 
   const handleChange = name => event => {
     setNoticeData({...noticeData, [name]:event.target.value})
@@ -42,7 +43,7 @@ const Notice = () => {
 
   const onSubmit = event => {
     event.preventDefault()
-    postNotice({title, description, imageLink, userD})
+    postNotice({title, description, imageLink, userD, postedBy})
     .then(data => {
        if(data.error){
          return toast("Something went wrong", {type:"danger"})
@@ -128,7 +129,7 @@ const Notice = () => {
 
 var kkdd = ""
   const getRandomString = () => {
-    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     var result = '';
     for ( var i = 0; i < 4; i++ ) {
         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
@@ -157,23 +158,6 @@ var kkdd = ""
         </div>
 
          <div className="container text-white">
-        {/*
-        <div className='mb-5'>
-  <div type="button" className="btn btn-block btn-info" data-toggle="collapse" data-target="#demo">Submit Exam form 2020-21 Odd Semester</div>
-  <div id="demo" className="collapse">
-  <br/>
-  IT IS TO NOTIFY ALL STUDENTS FOR ONLINE SUBMISSION OF
-EXAMINATION FORM FOR ODD SEMESTER EXAMINATION
-(DEC 2020).
-STUDENTS ARE ADVISED TO GO TO THE WBUT WEBSITE <a href={'http://vbspuexams.com/'} target={"_blank"} rel="noreferrer">
-www.vbspuexams.com </a>, FILL UP THE ONLINE EXAMINATION FORM
-AND MAKE ONLINE SUBMISSION OF THE SAME. THEY ARE
-ALSO ADVISED TO TAKE A PRINT OUT OF THE SUBMITTED
-FILLED IN EXAMINATION FORM AND SUBMIT THE SAME
-ALONG WITH THE EXAMINATION FEES OF Rs.2000/- (REGULAR)
-AND Rs.600/- (BACKLOG)
-  </div>
-  </div> */}
 
 {allNotice.map(notice => (
   <>
@@ -184,7 +168,7 @@ AND Rs.600/- (BACKLOG)
   <span className="float-right"><i class="fas fa-trash" onClick={() => onDelete(notice._id, notice.imageLink)}></i></span>
   }
   {notice.title}</div>  
-  <span className="float-right"> &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
+  <span className="float-right">Posted By: {notice.postedBy} &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
   <div id={`${kkdd}`} className="collapse">
   {notice.imageLink?
   <embed src={notice.imageLink} style={{height:"100vh", width:"100%"}}/>

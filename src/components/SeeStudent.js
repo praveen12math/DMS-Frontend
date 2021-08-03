@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { getAllStudent, removeUser } from '../auth/Controller';
 
 const SeeStudent = () => {
-
     const [student, setStudent] = useState([])
 
-    const userD = JSON.parse(localStorage.getItem("jwt"))
+    const userD = JSON.parse(localStorage.getItem("jwt"))    
 
-    const tokenId = userD.token
+    var tokenId = ""
+    
+    if(userD){
+        tokenId = userD.token
+    }
 
-    const fetchData = (tokenId) => {        
+    const fetchData = (tokenId) => {               
+
         getAllStudent(tokenId)
         .then(res => {
             setStudent(res)
-        })
+        })            
     }
 
     const onDelete = (id) => {
@@ -36,8 +40,22 @@ const SeeStudent = () => {
         fetchData(tokenId)
     },[tokenId])
 
+
+    if(!tokenId || userD.user.role === 0){
+        return( swal({title: "Access Denied", icon:"warning"}),
+         <Redirect to="/account" />
+        )
+     } 
+
     return ( 
         <>
+
+
+        {/* {!userD? swal({title: "Access Denied", icon:"warning"}).then(history.push("/account")) : userD.user.role === 0?
+        swal({title: "Access Denied", icon:"warning"}).then(history.push("/account")) : ""
+        } */}
+
+
 <Link to="/teacher" className="fa fa-arrow-left ml-2 mt-2 backArrow" ></Link>
 
 <div className="row mt-5">
