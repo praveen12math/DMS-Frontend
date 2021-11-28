@@ -66,8 +66,8 @@ const SeeTeacher = () => {
   <div className="card-body">
   Email: {data.email} <br/>
   Created at: {new Date(`${data.create}`).toLocaleString()}
-
   </div>
+  {data.role===1? <btn className="btn btn-success">Teacher Access</btn> : <btn className="btn btn-success">HOD Access</btn>}
 </div>
 </div>
 
