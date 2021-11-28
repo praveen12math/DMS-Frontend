@@ -171,7 +171,7 @@ var kkdd = ""
   <span className="float-right">Posted By: {notice.postedBy} &nbsp;<b> | {new Date(`${notice.updatedAt}`).toLocaleString()}</b></span>
   <div id={`${kkdd}`} className="collapse">
   {notice.imageLink?
-  <embed src={notice.imageLink} style={{height:"100vh", width:"100%"}}/>
+  <embed src={`${notice.imageLink}`} style={{height:"100vh", width:"100%"}}/>
   : ""}
   <br/>
   {notice.description}

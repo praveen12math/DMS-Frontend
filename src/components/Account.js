@@ -12,8 +12,7 @@ const Account = () => {
    const [login, setLogin] = useState(true)
 
      if(isAuthenticated()){
-        const userD = JSON.parse(localStorage.getItem("jwt")).user.role
-        console.log(userD);  
+        const userD = JSON.parse(localStorage.getItem("jwt")).user.role        
 
          if(userD === 0){
 
